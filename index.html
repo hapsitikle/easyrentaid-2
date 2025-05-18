@@ -1071,66 +1071,21 @@ margin-right: auto;
                remainingSeconds.toString().padStart(2, '0');
     }
     
-    // Create flipping digit animation for timer
-    function initializeTimer() {
-        var timerElement = document.getElementById('countdown-timer');
-        var timeString = formatTime(timeLeft);
-        var digitsHtml = '';
-        
-        // Create HTML for each digit with animation containers
-        for (var i = 0; i < timeString.length; i++) {
-            var char = timeString.charAt(i);
-            if (char === ':') {
-                digitsHtml += '<span class="timer-separator">:</span>';
-            } else {
-                digitsHtml += '<span class="timer-digit" data-value="' + char + '">' + char + '</span>';
-            }
-        }
-        
-        timerElement.innerHTML = digitsHtml;
-    }
-    
-    // Update countdown timer with animation
-    function updateTimer() {
-        if (timeLeft > 0) {
-            timeLeft--;
-            var newTimeString = formatTime(timeLeft);
-            var timerDigits = document.querySelectorAll('.timer-digit');
-            
-            // Update each digit with animation if changed
-            for (var i = 0; i < timerDigits.length; i++) {
-                var currentValue = timerDigits[i].getAttribute('data-value');
-                var newValue = i < newTimeString.length ? 
-                             (newTimeString.charAt(i) === ':' ? ':' : newTimeString.charAt(i)) : '';
-                
-                if (currentValue !== newValue && newValue !== ':') {
-                    // Create flip animation effect
-                    timerDigits[i].innerHTML = newValue;
-                    timerDigits[i].setAttribute('data-value', newValue);
-                    
-                    // Add animation class and remove it after animation completes
-                    timerDigits[i].classList.add('flip-animation');
-                    setTimeout((function(digit) {
-                        return function() {
-                            digit.classList.remove('flip-animation');
-                        };
-                    })(timerDigits[i]), 300);
-                }
-            }
-            
-            // Create urgency by changing color when time gets low
-            if (timeLeft < 60) {
-                document.querySelectorAll('.timer-digit, .timer-separator').forEach(function(el) {
-                    el.style.color = 'red';
-                });
-            }
-        } else {
-            clearInterval(timerInterval);
-            
-            // Add logic to handle timer expiration
-            // E.g., show a message or redirect
-        }
-    }
+  // Simple MM:SS timer
+function initializeTimer() {
+  document.getElementById('countdown-timer').textContent = formatTime(timeLeft);
+}
+
+function updateTimer() {
+  if (timeLeft <= 0) {
+    clearInterval(timerInterval);
+    // optional: handle expiration here
+    return;
+  }
+  timeLeft--;
+  document.getElementById('countdown-timer').textContent = formatTime(timeLeft);
+}
+
     
     // Setup countdown timer
     var timerInterval;
