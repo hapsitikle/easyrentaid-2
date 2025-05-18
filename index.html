@@ -1147,7 +1147,7 @@ function updateTimer() {
             question.options.forEach(function(option, index) {
                 // Add data-aos-delay for staggered animation
                 var delay = 50 * index;
-                slideContent += '<div class="radio-option" data-value="' + option + '" data-aos="fade-up" data-aos-delay="' + delay + '">';
+                slideContent += '<div class="radio-option" data-value="' + option + '">';
                 slideContent += '<input type="radio" name="' + question.id + '" value="' + option + '"> ' + option;
                 slideContent += '</div>';
             });
@@ -1159,7 +1159,7 @@ function updateTimer() {
             question.options.forEach(function(option, index) {
                 // Add data-aos-delay for staggered animation
                 var delay = 50 * index;
-                slideContent += '<div class="checkbox-option" data-value="' + option + '" data-aos="fade-up" data-aos-delay="' + delay + '">';
+                slideContent += '<div class="checkbox-option" data-value="' + option + '">';
                 slideContent += '<input type="checkbox" name="' + question.id + '" value="' + option + '"> ' + option;
                 slideContent += '</div>';
             });
