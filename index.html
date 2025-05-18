@@ -1206,6 +1206,12 @@ function updateTimer() {
         // Set up first quiz slide
         document.getElementById('quiz-slides').innerHTML = buildQuizSlide(currentQuestion);
         AOS.refresh();
+
+        // <— Add this block immediately after AOS.refresh()
+        document.querySelectorAll('[data-aos]').forEach(el => {
+        el.classList.add('aos-init','aos-animate');
+        });
+        // ——————
         updateProgress(currentQuestion);
         
         // Add event listeners for radio and checkbox options
