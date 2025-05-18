@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,790 +28,797 @@
             --color-text: #334155;
             --color-text-light: #64748b;
             --color-border: #e2e8f0;
-            
-            /* Typography */
-            --font-heading: 'Playfair Display', serif;
-            --font-body: 'Inter', sans-serif;
-            
-            /* Spacing */
-            --space-xs: 0.25rem;
-            --space-sm: 0.5rem;
-            --space-md: 1rem;
-            --space-lg: 1.5rem;
-            --space-xl: 2rem;
-            --space-2xl: 3rem;
-            
-            /* Timing */
-            --transition-fast: 0.2s;
-            --transition-normal: 0.3s;
-            --transition-slow: 0.5s;
-            
-            /* Shadows */
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-            --shadow-focus: 0 0 0 3px rgba(28, 60, 120, 0.25);
-            
-            /* Border radius */
-            --radius-sm: 4px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-full: 9999px;
-        }
 
-        /* CSS Reset and Base Styles */
+
+        /* Typography */
+        --font-heading: 'Playfair Display', serif;
+        --font-body: 'Inter', sans-serif;
+        
+        /* Spacing */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        
+        /* Timing */
+        --transition-fast: 0.2s;
+        --transition-normal: 0.3s;
+        --transition-slow: 0.5s;
+        
+        /* Shadows */
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+        --shadow-focus: 0 0 0 3px rgba(28, 60, 120, 0.25);
+        
+        /* Border radius */
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-full: 9999px;
+    }
+
+    /* CSS Reset and Base Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.6;
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+    }
+    
+    /* Accessibility - Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
         }
-        
-        body {
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.6;
-            font-family: var(--font-body);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
+    }
+    
+    /* Container styles */
+    .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        background-color: var(--color-card);
+        box-shadow: var(--shadow-lg);
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Header Styles */
+    header {
+        background-color: var(--color-primary);
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow-md);
+    }
+    
+    .logo {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-size: 1.1rem;
+    }
+    
+    .disclaimer {
+        font-size: 11px;
+        padding: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-sm);
+        margin-top: 5px;
+    }
+    
+    /* Hero Section with background gradient */
+    .hero {
+        max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+        padding: var(--space-xl) var(--space-lg);
+        text-align: center;
+        position: relative;
+        isolation: isolate;
+        border-bottom: 1px solid var(--color-border);
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    /* Animated gradient background */
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, #f0f6ff, #e0f0ff, #eef8ff);
+        background-size: 400% 400%;
+        z-index: -1;
+        animation: gradientBG 15s ease infinite;
+    }
+    
+    @keyframes gradientBG {
+        0% { background-position: 0% 50% }
+        50% { background-position: 100% 50% }
+        100% { background-position: 0% 50% }
+    }
+    
+    .hero h1 {
+        font-family: var(--font-heading);
+        font-size: 24px;
+        color: var(--color-primary);
+        margin-bottom: var(--space-lg);
+        line-height: 1.3;
+    }
+    
+    .hero h2 {
+        font-size: 18px;
+        color: var(--color-primary-light);
+        margin-bottom: var(--space-xl);
+        font-weight: normal;
+    }
+    
+    /* Timer styles with animation */
+    .timer-container {
+        max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+        margin: var(--space-lg) 0;
+        padding: var(--space-md);
+        background-color: #fffbeb;
+        border: 1px solid #fef3c7;
+        border-radius: var(--radius-md);
+        display: inline-block;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .timer-label {
+        font-size: 14px;
+        color: var(--color-accent);
+        margin-right: var(--space-sm);
+    }
+    
+    .timer {
+        font-weight: bold;
+        color: var(--color-accent);
+        position: relative;
+        display: inline-block;
+    }
+    
+    /* Digit flip animation for timer */
+    .timer-digit {
+        display: inline-block;
+        position: relative;
+        height: 1.2em;
+        width: 0.7em;
+        overflow: hidden;
+        text-align: center;
+    }
+    
+    .timer-digit-inner {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        transition: transform var(--transition-fast) ease-out;
+    }
+    
+    /* Button Styles with hover effects */
+    .btn {
+        display: inline-block;
+        padding: 15px 25px;
+        background-color: var(--color-accent);
+        color: white;
+        text-decoration: none;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        transition: all var(--transition-normal) ease;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin: var(--space-md) 0;
+        width: 85%;
+        max-width: 320px;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(255,255,255,0.2), transparent);
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn:hover::after {
+        opacity: 1;
+    }
+    
+    .btn:active {
+        transform: translateY(1px);
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .btn:focus {
+        outline: none;
+        box-shadow: var(--shadow-focus);
+    }
+    
+    .btn-primary {
+        background-color: var(--color-success);
+    }
+    
+    /* Quiz Slide Styles */
+    .quiz-container {
+        padding: var(--space-lg);
+        padding-left: 5%;
+        text-align: center;
+        padding-right: 5%;
+        display: none;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity var(--transition-normal), transform var(--transition-normal);
+    }
+
+    .quiz-container .btn {
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top: var(--space-lg);
+    }
+    
+    .quiz-active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .quiz-progress {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: var(--space-lg);
+        color: var(--color-text-light);
+        font-size: 14px;
+    }
+    
+    .progress-bar {
+        height: 6px;
+        background-color: var(--color-border);
+        border-radius: var(--radius-full);
+        margin: var(--space-md) 0;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background-color: var(--color-success);
+        width: 10%;
+        transition: width 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    
+    /* Progress tooltip on hover */
+    .progress-bar:hover::before {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: -30px;
+        right: 0;
+        background-color: var(--color-primary-dark);
+        color: white;
+        padding: 4px 8px;
+        border-radius: var(--radius-sm);
+        font-size: 12px;
+        opacity: 0;
+        animation: fadeIn var(--transition-normal) forwards;
+    }
+    
+    .question-container {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: var(--space-xl);
+        background-color: var(--color-card);
+        border-radius: var(--radius-md);
+        padding: var(--space-lg);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--color-border);
+        text-align:left;
+    }
+    
+    .question {
+        font-family: var(--font-heading);
+        font-size: 20px;
+        margin-bottom: var(--space-md);
+        color: var(--color-primary);
+    }
+    
+    .help-text {
+        font-size: 14px;
+        color: var(--color-text-light);
+        margin-bottom: var(--space-md);
+        font-style: italic;
+    }
+    
+    /* Form Elements with enhanced styling */
+    .form-group {
+        margin-bottom: var(--space-lg);
+    }
+    
+    label {
+        display: block;
+        margin-bottom: var(--space-sm);
+        font-weight: 500;
+        color: var(--color-text);
+    }
+    
+    select, input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        font-size: 16px;
+        margin-bottom: var(--space-md);
+        transition: all var(--transition-normal);
+        background-color: white;
+        color: var(--color-text);
+        font-family: var(--font-body);
+    }
+    
+    select:hover, input[type="text"]:hover, input[type="number"]:hover {
+        border-color: var(--color-primary-light);
+    }
+    
+    select:focus, input:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: var(--shadow-focus);
+    }
+    
+    .radio-group, .checkbox-group {
+        margin-bottom: var(--space-md);
+    }
+    
+    .radio-option, .checkbox-option {
+        display: flex;
+        align-items: center;
+        margin-bottom: var(--space-md);
+        cursor: pointer;
+        padding: var(--space-md);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        transition: all var(--transition-normal);
+        background-color: var(--color-card);
+    }
+    
+    .radio-option:hover, .checkbox-option:hover {
+        border-color: var(--color-primary-light);
+        background-color: #f8faff;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .radio-option.selected, .checkbox-option.selected {
+        background-color: #ecfdf5;
+        border-color: var(--color-success);
+        transform: scale(1.02);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .radio-option input, .checkbox-option input {
+        margin-right: var(--space-md);
+    }
+    
+    /* Custom radio and checkbox styling */
+    input[type="radio"], input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--color-border);
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        margin-right: var(--space-md);
+        transition: all var(--transition-normal);
+    }
+    
+    input[type="radio"] {
+        border-radius: 50%;
+    }
+    
+    input[type="checkbox"] {
+        border-radius: var(--radius-sm);
+    }
+    
+    input[type="radio"]:checked, input[type="checkbox"]:checked {
+        border-color: var(--color-success);
+        background-color: var(--color-success);
+    }
+    
+    input[type="radio"]:checked::after, input[type="checkbox"]:checked::after {
+        content: '';
+        position: absolute;
+    }
+    
+    input[type="radio"]:checked::after {
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    input[type="checkbox"]:checked::after {
+        top: 2px;
+        left: 6px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+    
+    /* Notification Styles with animation */
+    .notification {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background-color: white;
+        box-shadow: var(--shadow-lg);
+        border-left: 4px solid var(--color-success);
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+        max-width: 300px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        transform: translateX(-120%);
+        transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .notification.show {
+        transform: translateX(0);
+    }
+    
+    .notification-icon {
+        background-color: #ecfdf5;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: var(--space-md);
+        flex-shrink: 0;
+    }
+    
+    .notification-text {
+        font-size: 14px;
+    }
+    
+    /* Results Page Styles */
+    .results-container {
+        padding: var(--space-lg);
+        padding-left:5%;
+        padding-right:5%;
+        text-align: center;
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+    
+    .analyzing {
+        padding: var(--space-2xl) var(--space-lg);
+        padding-left: 5%;
+        padding-right: 5%;
+        text-align: center;
+        display: none;
+    }
+    
+    .analyzing-message {
+        margin: var(--space-lg) 0;
+        font-size: 18px;
+        color: var(--color-primary);
+        font-family: var(--font-heading);
+    }
+    
+    /* Enhanced loader animation */
+    .loader {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .loader::before, .loader::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        animation-duration: 1.8s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
+    }
+    
+    .loader::before {
+        width: 100%;
+        height: 100%;
+        background-color: #e6f2ff;
+        animation-name: pulse;
+    }
+    
+    .loader::after {
+        width: 40%;
+        height: 40%;
+        background-color: var(--color-primary-light);
+        top: 30%;
+        left: 30%;
+        animation-name: pulse-inner;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(0.8); opacity: 0.5; }
+        50% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(0.8); opacity: 0.5; }
+    }
+    
+    @keyframes pulse-inner {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.4); }
+        100% { transform: scale(1); }
+    }
+    
+    .eligibility-score {
+        max-width: 800px;
+        margin: var(--space-xl) 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: var(--space-xl);
+        margin-bottom: var(--space-xl);
+        text-align: center;
+    }
+    
+    .gauge {
+        width: 200px;
+        height: 100px;
+        margin: 0 auto;
+        background-color: var(--color-border);
+        border-radius: 100px 100px 0 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .gauge-fill {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0%; /* Start at 0% for animation */
+        background: linear-gradient(to top, var(--color-success), var(--color-secondary-light));
+        border-radius: 100px 100px 0 0;
+        transition: height 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .gauge-percentage {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 0.5s ease 1.5s;
+    }
+    
+    .matched-programs {
+        margin: var(--space-xl) auto;
+        text-align: center;
+        border-radius: var(--radius-md);
+        padding: 0;
+        transition: transform var(--transition-normal);
+        opacity: 0;
+        transform: translateY(20px);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit minmax(300px, 1fr));
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .matched-programs.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .program-item {
+        height: 100%;
+display: flex;
+flex-direction: column;
+        margin-bottom: var(--space-md);
+        padding: var(--space-lg);
+        border-radius: var(--radius-md);
+        background-color: white;
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-md);
+        transition: all var(--transition-normal);
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    
+    .program-item:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .program-name {
+        font-weight: 600;
+        font-family: var(--font-heading);
+        color: var(--color-primary);
+        margin-bottom: var(--space-xs);
+    }
+    
+    .program-amount {
+        font-size: 18px;
+        color: var(--color-success);
+        margin-bottom: var(--space-xs);
+        font-weight: 600;
+    }
+    
+    .program-desc {
+        font-size: 14px;
+        color: var(--color-text-light);
+    }
+    
+    .expiry-notice {
+        max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+        margin: var(--space-lg) 0;
+        color: #856404;
+        box-shadow: var(--shadow-sm);
+        display: inline-block;
+        animation: pulse 2s infinite;
+    }
+    
+    /* Upsell Survey Styles */
+    .survey-container {
+        max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+        padding: var(--space-lg);
+        background-color: #f8faff;
+        margin-top: var(--space-lg);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        text-align: left;
+        box-shadow: var(--shadow-md);
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity var(--transition-normal), transform var(--transition-normal);
+    }
+    
+    .survey-container.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .survey-title {
+        font-size: 18px;
+        font-family: var(--font-heading);
+        color: var(--color-primary);
+        margin-bottom: var(--space-md);
+    }
+    
+    /* Footer Styles */
+    footer {
+        padding: var(--space-lg) 5%;
+        background-color: #f8fafc;
+        border-top: 1px solid var(--color-border);
+        font-size: 12px;
+        color: var(--color-text-light);
+        text-align: center;
+    }
+    
+    footer p {
+        margin-bottom: var(--space-sm);
+    }
+    
+    .security-badge {
+        display: inline-block;
+        background-color: #ecfdf5;
+        color: var(--color-success);
+        padding: 5px 10px;
+        border-radius: var(--radius-sm);
+        font-size: 12px;
+        margin: var(--space-md) 0;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from { 
+            opacity: 0;
+            transform: translateY(20px);
         }
-        
-        /* Accessibility - Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        /* Container styles */
-        .container {
-            width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            background-color: var(--color-card);
-            box-shadow: var(--shadow-lg);
-            min-height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: var(--color-primary);
-            color: white;
-            padding: 12px 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .logo {
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            font-size: 1.1rem;
-        }
-        
-        .disclaimer {
-            font-size: 11px;
-            padding: 5px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-sm);
-            margin-top: 5px;
-        }
-        
-        /* Hero Section with background gradient */
-        .hero {
-            max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-            padding: var(--space-xl) var(--space-lg);
-            text-align: center;
-            position: relative;
-            isolation: isolate;
-            border-bottom: 1px solid var(--color-border);
-            padding-left: 5%;
-            padding-right: 5%;
-        }
-        
-        /* Animated gradient background */
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, #f0f6ff, #e0f0ff, #eef8ff);
-            background-size: 400% 400%;
-            z-index: -1;
-            animation: gradientBG 15s ease infinite;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50% }
-            50% { background-position: 100% 50% }
-            100% { background-position: 0% 50% }
-        }
-        
+    }
+    
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4); }
+        70% { box-shadow: 0 0 0 5px rgba(243, 156, 18, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); }
+    }
+    
+    /* Media Queries for larger screens */
+    @media (min-width: 1200px) {
         .hero h1 {
-            font-family: var(--font-heading);
-            font-size: 24px;
-            color: var(--color-primary);
-            margin-bottom: var(--space-lg);
-            line-height: 1.3;
+            font-size: 36px;
         }
         
         .hero h2 {
-            font-size: 18px;
-            color: var(--color-primary-light);
-            margin-bottom: var(--space-xl);
-            font-weight: normal;
-        }
-        
-        /* Timer styles with animation */
-        .timer-container {
-            max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-            margin: var(--space-lg) 0;
-            padding: var(--space-md);
-            background-color: #fffbeb;
-            border: 1px solid #fef3c7;
-            border-radius: var(--radius-md);
-            display: inline-block;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .timer-label {
-            font-size: 14px;
-            color: var(--color-accent);
-            margin-right: var(--space-sm);
-        }
-        
-        .timer {
-            font-weight: bold;
-            color: var(--color-accent);
-            position: relative;
-            display: inline-block;
-        }
-        
-        /* Digit flip animation for timer */
-        .timer-digit {
-            display: inline-block;
-            position: relative;
-            height: 1.2em;
-            width: 0.7em;
-            overflow: hidden;
-            text-align: center;
-        }
-        
-        .timer-digit-inner {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            transition: transform var(--transition-fast) ease-out;
-        }
-        
-        /* Button Styles with hover effects */
-        .btn {
-            display: inline-block;
-            padding: 15px 25px;
-            background-color: var(--color-accent);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            transition: all var(--transition-normal) ease;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin: var(--space-md) 0;
-            width: 85%;
-            max-width: 320px;
-            text-align: center;
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(255,255,255,0.2), transparent);
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-        }
-        
-        .btn:hover::after {
-            opacity: 1;
-        }
-        
-        .btn:active {
-            transform: translateY(1px);
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .btn:focus {
-            outline: none;
-            box-shadow: var(--shadow-focus);
-        }
-        
-        .btn-primary {
-            background-color: var(--color-success);
-        }
-        
-        /* Quiz Slide Styles */
-        .quiz-container {
-            padding: var(--space-lg);
-            padding-left: 5%;
-            text-align: center;
-            padding-right: 5%;
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity var(--transition-normal), transform var(--transition-normal);
-        }
-
-        .quiz-container .btn {
-            display:block;
-            margin-left:auto;
-            margin-right:auto;
-            margin-top: var(--space-lg);
-        }
-        
-        .quiz-active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .quiz-progress {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: var(--space-lg);
-            color: var(--color-text-light);
-            font-size: 14px;
-        }
-        
-        .progress-bar {
-            height: 6px;
-            background-color: var(--color-border);
-            border-radius: var(--radius-full);
-            margin: var(--space-md) 0;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background-color: var(--color-success);
-            width: 10%;
-            transition: width 0.7s cubic-bezier(0.65, 0, 0.35, 1);
-        }
-        
-        /* Progress tooltip on hover */
-        .progress-bar:hover::before {
-            content: attr(data-tooltip);
-            position: absolute;
-            top: -30px;
-            right: 0;
-            background-color: var(--color-primary-dark);
-            color: white;
-            padding: 4px 8px;
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            opacity: 0;
-            animation: fadeIn var(--transition-normal) forwards;
-        }
-        
-        .question-container {
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: var(--space-xl);
-            background-color: var(--color-card);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--color-border);
-            text-align:left;
+            font-size: 24px;
         }
         
         .question {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            margin-bottom: var(--space-md);
-            color: var(--color-primary);
+            font-size: 22px;
         }
         
-        .help-text {
-            font-size: 14px;
-            color: var(--color-text-light);
-            margin-bottom: var(--space-md);
-            font-style: italic;
+        .btn {
+            padding: 15px 30px;
         }
-        
-        /* Form Elements with enhanced styling */
-        .form-group {
-            margin-bottom: var(--space-lg);
-        }
-        
-        label {
-            display: block;
-            margin-bottom: var(--space-sm);
-            font-weight: 500;
-            color: var(--color-text);
-        }
-        
-        select, input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-size: 16px;
-            margin-bottom: var(--space-md);
-            transition: all var(--transition-normal);
-            background-color: white;
-            color: var(--color-text);
-            font-family: var(--font-body);
-        }
-        
-        select:hover, input[type="text"]:hover, input[type="number"]:hover {
-            border-color: var(--color-primary-light);
-        }
-        
-        select:focus, input:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: var(--shadow-focus);
-        }
-        
-        .radio-group, .checkbox-group {
-            margin-bottom: var(--space-md);
-        }
-        
-        .radio-option, .checkbox-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: var(--space-md);
-            cursor: pointer;
-            padding: var(--space-md);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            transition: all var(--transition-normal);
-            background-color: var(--color-card);
-        }
-        
-        .radio-option:hover, .checkbox-option:hover {
-            border-color: var(--color-primary-light);
-            background-color: #f8faff;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .radio-option.selected, .checkbox-option.selected {
-            background-color: #ecfdf5;
-            border-color: var(--color-success);
-            transform: scale(1.02);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .radio-option input, .checkbox-option input {
-            margin-right: var(--space-md);
-        }
-        
-        /* Custom radio and checkbox styling */
-        input[type="radio"], input[type="checkbox"] {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--color-border);
-            outline: none;
-            cursor: pointer;
-            position: relative;
-            margin-right: var(--space-md);
-            transition: all var(--transition-normal);
-        }
-        
-        input[type="radio"] {
-            border-radius: 50%;
-        }
-        
-        input[type="checkbox"] {
-            border-radius: var(--radius-sm);
-        }
-        
-        input[type="radio"]:checked, input[type="checkbox"]:checked {
-            border-color: var(--color-success);
-            background-color: var(--color-success);
-        }
-        
-        input[type="radio"]:checked::after, input[type="checkbox"]:checked::after {
-            content: '';
-            position: absolute;
-        }
-        
-        input[type="radio"]:checked::after {
-            width: 10px;
-            height: 10px;
-            background-color: white;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        input[type="checkbox"]:checked::after {
-            top: 2px;
-            left: 6px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-        
-        /* Notification Styles with animation */
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: white;
-            box-shadow: var(--shadow-lg);
-            border-left: 4px solid var(--color-success);
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            max-width: 300px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            transform: translateX(-120%);
-            transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification-icon {
-            background-color: #ecfdf5;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: var(--space-md);
-            flex-shrink: 0;
-        }
-        
-        .notification-text {
-            font-size: 14px;
-        }
-        
-        /* Results Page Styles */
-        .results-container {
-            padding: var(--space-lg);
-            padding-left:5%;
-            padding-right:5%;
-            text-align: center;
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity var(--transition-slow), transform var(--transition-slow);
-        }
-        
-        .analyzing {
-            padding: var(--space-2xl) var(--space-lg);
-            padding-left: 5%;
-            padding-right: 5%;
-            text-align: center;
-            display: none;
-        }
-        
-        .analyzing-message {
-            margin: var(--space-lg) 0;
-            font-size: 18px;
-            color: var(--color-primary);
-            font-family: var(--font-heading);
-        }
-        
-        /* Enhanced loader animation */
-        .loader {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .loader::before, .loader::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            animation-duration: 1.8s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
-        }
-        
-        .loader::before {
-            width: 100%;
-            height: 100%;
-            background-color: #e6f2ff;
-            animation-name: pulse;
-        }
-        
-        .loader::after {
-            width: 40%;
-            height: 40%;
-            background-color: var(--color-primary-light);
-            top: 30%;
-            left: 30%;
-            animation-name: pulse-inner;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0.8); opacity: 0.5; }
-        }
-        
-        @keyframes pulse-inner {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.4); }
-            100% { transform: scale(1); }
-        }
-        
-        .eligibility-score {
-            max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-            margin: var(--space-xl) 0;
-        }
-        
-        .gauge {
-            width: 200px;
-            height: 100px;
-            margin: 0 auto;
-            background-color: var(--color-border);
-            border-radius: 100px 100px 0 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .gauge-fill {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0%; /* Start at 0% for animation */
-            background: linear-gradient(to top, var(--color-success), var(--color-secondary-light));
-            border-radius: 100px 100px 0 0;
-            transition: height 2s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .gauge-percentage {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-            opacity: 0;
-            transition: opacity 0.5s ease 1.5s;
-        }
-        
-        .matched-programs {
-            margin: var(--space-xl) 0;
-            text-align: left;
-            border-radius: var(--radius-md);
-            padding: 0;
-            transition: transform var(--transition-normal);
-            opacity: 0;
-            transform: translateY(20px);
-            max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-        }
-        
-        .matched-programs.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .program-item {
-            height: 100%;
-    display: flex;
-    flex-direction: column;
-            margin-bottom: var(--space-md);
-            padding: var(--space-lg);
-            border-radius: var(--radius-md);
-            background-color: white;
-            border: 1px solid var(--color-border);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-normal);
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        
-        .program-item:hover {
-            transform: translateY(-3px) !important;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .program-name {
-            font-weight: 600;
-            font-family: var(--font-heading);
-            color: var(--color-primary);
-            margin-bottom: var(--space-xs);
-        }
-        
-        .program-amount {
-            font-size: 18px;
-            color: var(--color-success);
-            margin-bottom: var(--space-xs);
-            font-weight: 600;
-        }
-        
-        .program-desc {
-            font-size: 14px;
-            color: var(--color-text-light);
-        }
-        
-        .expiry-notice {
-            max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            margin: var(--space-lg) 0;
-            color: #856404;
-            box-shadow: var(--shadow-sm);
-            display: inline-block;
-            animation: pulse 2s infinite;
-        }
-        
-        /* Upsell Survey Styles */
-        .survey-container {
-            max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-            padding: var(--space-lg);
-            background-color: #f8faff;
-            margin-top: var(--space-lg);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--color-border);
-            text-align: left;
-            box-shadow: var(--shadow-md);
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity var(--transition-normal), transform var(--transition-normal);
-        }
-        
-        .survey-container.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .survey-title {
-            font-size: 18px;
-            font-family: var(--font-heading);
-            color: var(--color-primary);
-            margin-bottom: var(--space-md);
-        }
-        
-        /* Footer Styles */
-        footer {
-            padding: var(--space-lg) 5%;
-            background-color: #f8fafc;
-            border-top: 1px solid var(--color-border);
-            font-size: 12px;
-            color: var(--color-text-light);
-            text-align: center;
-        }
-        
-        footer p {
-            margin-bottom: var(--space-sm);
-        }
-        
-        .security-badge {
-            display: inline-block;
-            background-color: #ecfdf5;
-            color: var(--color-success);
-            padding: 5px 10px;
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            margin: var(--space-md) 0;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4); }
-            70% { box-shadow: 0 0 0 5px rgba(243, 156, 18, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); }
-        }
-        
-        /* Media Queries for larger screens */
-        @media (min-width: 1200px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero h2 {
-                font-size: 24px;
-            }
-            
-            .question {
-                font-size: 22px;
-            }
-            
-            .btn {
-                padding: 15px 30px;
-            }
-        }
-    </style>
+    }
+</style>
+
+
 </head>
 <body>
     <div class="container">
@@ -819,1249 +827,1231 @@
             <div class="logo">2025 BenefitsCheck.com</div>
             <div class="disclaimer">This site is privately owned — Not affiliated with any government agency.</div>
         </header>
+
+
+    <!-- Hero Section with gradient background -->
+    <section class="hero" id="hero-section" data-aos="fade-up">
+        <h1>See Which 2025 Government Benefits You're Missing Out On</h1>
+        <h2>Americans are receiving up to $4,700 in benefits they didn't know about</h2>
         
-        <!-- Hero Section with gradient background -->
-        <section class="hero" id="hero-section" data-aos="fade-up">
-            <h1>See Which 2025 Government Benefits You're Missing Out On</h1>
-            <h2>Americans are receiving up to $4,700 in benefits they didn't know about</h2>
-            
-            <div class="timer-container" data-aos="fade-up" data-aos-delay="100">
-                <span class="timer-label">Eligibility Check Available for:</span>
-                <span class="timer" id="countdown-timer">09:32</span>
-            </div>
-            
-            <button class="btn" id="start-quiz" data-aos="fade-up" data-aos-delay="200">
-                Start My Free Eligibility Quiz
-            </button>
-        </section>
-        
-        <!-- Quiz Container -->
-        <section class="quiz-container" id="quiz-container">
-            <div class="quiz-progress">
-                <span id="question-number">Question 1 of 10</span>
-                <span id="time-remaining">About 2 min left</span>
-            </div>
-            <div class="progress-bar" id="progress-bar" data-tooltip="10% complete">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            
-            <!-- Quiz slides will be dynamically inserted here -->
-            <div id="quiz-slides"></div>
-            
-            <button class="btn btn-primary" id="next-question">Continue</button>
-        </section>
-        
-        <!-- Results/Analyzing Section -->
-        <section class="analyzing" id="analyzing-section" style="display: none;">
-            <div class="loader"></div>
-            <div class="analyzing-message" id="analyzing-message">Checking criteria...</div>
-        </section>
-        
-        <!-- Results Display -->
-        <section class="results-container" id="results-section">
-            <h2 class="results-title">Your 2025 Benefits Results</h2>
-            
-            <div id="personalization-line" class="help-text">Based on your household of 3 and income of $2,500/month...</div>
-            
-            <div class="eligibility-score">
-                <h3>Your Eligibility Score</h3>
-                <div class="gauge">
-                    <div class="gauge-fill" id="gauge-fill"></div>
-                    <div class="gauge-percentage" id="gauge-percentage">87%</div>
-                </div>
-            </div>
-            
-            <div class="expiry-notice">
-                <strong>⚠️ Important:</strong> Your eligibility check expires in 24 hrs
-            </div>
-            
-            <div class="matched-programs" id="matched-programs">
-                <!-- Programs will be dynamically inserted here -->
-            </div>
-            
-            <p><strong>Save your place in line!</strong> <span id="spots-left">Only 7 spots left in your area</span></p>
-            
-            <button class="btn btn-primary" id="get-guide">Download My Free Benefits Guide</button>
-            <p class="help-text">Free check — no obligation</p>
-            
-            <div class="security-badge">
-                <span>🔒 We use AES-256 encryption</span>
-            </div>
-            
-            <div class="survey-container" id="survey-container">
-                <h3 class="survey-title">Help us match you with more programs</h3>
-                <p>Answer these 3 quick questions to see additional benefits you may qualify for:</p>
-                
-                <div class="form-group">
-                    <label>Are you interested in improving your credit score?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" name="credit" value="yes"> Yes
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" name="credit" value="no"> No
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Do you need financial assistance in the next 30 days?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" name="financial" value="yes"> Yes
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" name="financial" value="no"> No
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Which financial goal is most important to you?</label>
-                    <select name="goal">
-                        <option value="">-- Select One --</option>
-                        <option value="debt">Reduce Debt</option>
-                        <option value="savings">Build Savings</option>
-                        <option value="housing">Secure Housing</option>
-                        <option value="education">Education Expenses</option>
-                        <option value="bills">Pay Monthly Bills</option>
-                    </select>
-                </div>
-                
-                <button class="btn" id="submit-survey">See Additional Programs</button>
-                
-                <p class="help-text" style="font-size: 11px; margin-top: 15px;">We share information with our partners to find the best program matches for you.</p>
-            </div>
-        </section>
-        
-        <!-- Notification Element -->
-        <div class="notification" id="notification">
-            <div class="notification-icon">👤</div>
-            <div class="notification-text" id="notification-text"></div>
+        <div class="timer-container" data-aos="fade-up" data-aos-delay="100">
+            <span class="timer-label">Eligibility Check Available for:</span>
+            <span class="timer" id="countdown-timer">09:32</span>
         </div>
         
-        <!-- Footer -->
-        <footer>
-            <p>Results may vary. This is not a government website.</p>
-            <p>By using this site, you agree to our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and consent to receive marketing communications.</p>
-            <p>© 2025 BenefitsCheck.com - All rights reserved</p>
-        </footer>
-    </div>
-
-    <!-- AOS.js for scroll animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+        <button class="btn" id="start-quiz" data-aos="fade-up" data-aos-delay="200">
+            Start My Free Eligibility Quiz
+        </button>
+    </section>
     
-    <script>
-        // Initialize AOS animation library
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                easing: 'ease-out',
-                once: true,
-                offset: 50,
-                // Disable animations for users who prefer reduced motion
-                disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            });
+    <!-- Quiz Container -->
+    <section class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <span id="question-number">Question 1 of 7</span>
+            <span id="time-remaining">About 2 min left</span>
+        </div>
+        <div class="progress-bar" id="progress-bar" data-tooltip="14% complete">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        
+        <!-- Quiz slides will be dynamically inserted here -->
+        <div id="quiz-slides"></div>
+        
+        <button class="btn btn-primary" id="next-question">Continue</button>
+    </section>
+    
+    <!-- Results/Analyzing Section -->
+    <section class="analyzing" id="analyzing-section" style="display: none;">
+        <div class="loader"></div>
+        <div class="analyzing-message" id="analyzing-message">Checking criteria...</div>
+    </section>
+    
+    <!-- Results Display -->
+    <section class="results-container" id="results-section">
+        <h2 class="results-title">Your 2025 Benefits Results</h2>
+        
+        <div id="personalization-line" class="help-text">Based on your household of 3 and income of $2,500/month...</div>
+        
+        <div class="eligibility-score">
+            <h3>Your Eligibility Score</h3>
+            <div class="gauge">
+                <div class="gauge-fill" id="gauge-fill"></div>
+                <div class="gauge-percentage" id="gauge-percentage">87%</div>
+            </div>
+        </div>
+        
+        <div class="expiry-notice">
+            <strong>⚠️ Important:</strong> Your eligibility check expires in 24 hrs
+        </div>
+        
+        <div class="matched-programs" id="matched-programs">
+            <!-- Programs will be dynamically inserted here -->
+        </div>
+        
+        <p><strong>Save your place in line!</strong> <span id="spots-left">Only 7 spots left in your area</span></p>
+        
+        <button class="btn btn-primary" id="get-guide">Download My Free Benefits Guide</button>
+        <p class="help-text">Free check — no obligation</p>
+        
+        <div class="security-badge">
+            <span>🔒 We use AES-256 encryption</span>
+        </div>
+        
+        <div class="survey-container" id="survey-container">
+            <h3 class="survey-title">Help us match you with more programs</h3>
+            <p>Answer these 3 quick questions to see additional benefits you may qualify for:</p>
+            
+            <div class="form-group">
+                <label>Are you interested in improving your credit score?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="credit" value="yes"> Yes
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="credit" value="no"> No
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Do you need financial assistance in the next 30 days?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="financial" value="yes"> Yes
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="financial" value="no"> No
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Which financial goal is most important to you?</label>
+                <select name="goal">
+                    <option value="">-- Select One --</option>
+                    <option value="debt">Reduce Debt</option>
+                    <option value="savings">Build Savings</option>
+                    <option value="housing">Secure Housing</option>
+                    <option value="education">Education Expenses</option>
+                    <option value="bills">Pay Monthly Bills</option>
+                </select>
+            </div>
+            
+            <button class="btn" id="submit-survey">See Additional Programs</button>
+            
+            <p class="help-text" style="font-size: 11px; margin-top: 15px;">We share information with our partners to find the best program matches for you.</p>
+        </div>
+    </section>
+    
+    <!-- Notification Element -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">👤</div>
+        <div class="notification-text" id="notification-text"></div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>Results may vary. This is not a government website.</p>
+        <p>By using this site, you agree to our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and consent to receive marketing communications.</p>
+        <p>© 2025 BenefitsCheck.com - All rights reserved</p>
+    </footer>
+</div>
+
+<!-- AOS.js for scroll animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+    // Initialize AOS animation library
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true,
+            offset: 50,
+            // Disable animations for users who prefer reduced motion
+            disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
         });
+    });
+    
+    // Global variables
+    var currentQuestion = 0;
+    var totalQuestions = 7;
+    var quizData = {};
+    var timeLeft = 572; // 9 minutes and 32 seconds
+    var analyzeMessages = [
+        "Checking criteria...",
+        "Searching programs...",
+        "Calculating benefits...",
+        "Reviewing priority...",
+        "Finding local matches...",
+        "Almost ready..."
+    ];
+    
+    // States array for dropdown
+    var states = [
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
+        "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+        "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
+        "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
+        "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+    ];
+    
+    // Define quiz questions
+    var questions = [
+        {
+            id: "state",
+            question: "What state do you currently live in?",
+            helpText: "Benefits vary by location—we'll find programs just for you.",
+            type: "dropdown",
+            options: states
+        },
+        {
+            id: "household",
+            question: "How many people are in your household?",
+            helpText: "Larger households often qualify for more benefits.",
+            type: "dropdown",
+            options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"]
+        },
+        {
+            id: "income",
+            question: "What is your approximate monthly household income?",
+            helpText: "Most people overestimate their income—be safe.",
+            type: "dropdown",
+            options: ["$0 - $1,000", "$1,001 - $2,000", "$2,001 - $3,000", "$3,001 - $4,000", "$4,001 - $5,000", "$5,001+"]
+        },
+        {
+            id: "housing",
+            question: "What is your current housing status?",
+            helpText: "7 out of 10 renters qualify for help.",
+            type: "radio",
+            options: ["Own", "Rent", "Living with family/friends", "Other"]
+        },
+        {
+            id: "struggles",
+            question: "Which expenses do you struggle with most?",
+            helpText: "Select all that apply to uncover every aid option.",
+            type: "checkbox",
+            options: ["Rent/Mortgage", "Utilities", "Food", "Healthcare", "Childcare", "Transportation", "Education"]
+        },
+        {
+            id: "employment",
+            question: "What is your current employment status?",
+            helpText: "Different jobs unlock different programs.",
+            type: "radio",
+            options: ["Full-time", "Part-time", "Self-employed", "Unemployed", "Disabled", "Retired", "Student"]
+        },
+        {
+            id: "priority",
+            question: "What is your top assistance priority?",
+            helpText: "Helps us fast-track your best match.",
+            type: "radio",
+            options: ["Housing Assistance", "Food Assistance", "Medical Benefits", "Income Support", "Utility Help", "Education Aid"]
+        }
+    ];
+    
+    // Social proof notifications
+    var notifications = [
+        "Susan from [STATE] qualified for $750 in Housing Assistance 2 mins ago.",
+        "[COUNT] people in [ZIP] checking eligibility right now.",
+        "Mark from [CITY] just got $350 in Food Stamps.",
+        "Funds still available in [ZIP]—complete to secure your spot."
+    ];
+    
+    // Generate a random number between min and max
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    // Enhanced countdown timer with digit flip animation
+    function formatTime(seconds) {
+        var minutes = Math.floor(seconds / 60);
+        var remainingSeconds = seconds % 60;
         
-        // Global variables
-        var currentQuestion = 0;
-        var totalQuestions = 10;
-        var quizData = {};
-        var timeLeft = 572; // 9 minutes and 32 seconds
-        var analyzeMessages = [
-            "Checking criteria...",
-            "Searching programs...",
-            "Calculating benefits...",
-            "Reviewing priority...",
-            "Finding local matches...",
-            "Almost ready..."
-        ];
+        return minutes.toString().padStart(2, '0') + ":" + 
+               remainingSeconds.toString().padStart(2, '0');
+    }
+    
+    // Create flipping digit animation for timer
+    function initializeTimer() {
+        var timerElement = document.getElementById('countdown-timer');
+        var timeString = formatTime(timeLeft);
+        var digitsHtml = '';
         
-        // States array for dropdown
-        var states = [
-            "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
-            "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
-            "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
-            "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
-            "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
-        ];
-        
-        // Define quiz questions
-        var questions = [
-            {
-                id: "state",
-                question: "What state do you currently live in?",
-                helpText: "Benefits vary by location—we'll find programs just for you.",
-                type: "dropdown",
-                options: states
-            },
-            {
-                id: "household",
-                question: "How many people are in your household?",
-                helpText: "Larger households often qualify for more benefits.",
-                type: "dropdown",
-                options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"]
-            },
-            {
-                id: "income",
-                question: "What is your approximate monthly household income?",
-                helpText: "Most people overestimate their income—be safe.",
-                type: "dropdown",
-                options: ["$0 - $1,000", "$1,001 - $2,000", "$2,001 - $3,000", "$3,001 - $4,000", "$4,001 - $5,000", "$5,001+"]
-            },
-            {
-                id: "housing",
-                question: "What is your current housing status?",
-                helpText: "7 out of 10 renters qualify for help.",
-                type: "radio",
-                options: ["Own", "Rent", "Living with family/friends", "Other"]
-            },
-            {
-                id: "struggles",
-                question: "Which expenses do you struggle with most?",
-                helpText: "Select all that apply to uncover every aid option.",
-                type: "checkbox",
-                options: ["Rent/Mortgage", "Utilities", "Food", "Healthcare", "Childcare", "Transportation", "Education"]
-            },
-            {
-                id: "existing",
-                question: "Are you currently receiving any government benefits?",
-                helpText: "You might still qualify for more.",
-                type: "radio",
-                options: ["Yes", "No", "Not sure"]
-            },
-            {
-                id: "employment",
-                question: "What is your current employment status?",
-                helpText: "Different jobs unlock different programs.",
-                type: "radio",
-                options: ["Full-time", "Part-time", "Self-employed", "Unemployed", "Disabled", "Retired", "Student"]
-            },
-            {
-                id: "urgency",
-                question: "How soon do you need assistance?",
-                helpText: "Funding is limited—priority goes to urgent needs.",
-                type: "radio",
-                options: ["Immediately", "Within 30 days", "Just exploring options"]
-            },
-            {
-                id: "age",
-                question: "Which age bracket do you fall into?",
-                helpText: "Certain ages unlock special support services.",
-                type: "dropdown",
-                options: ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"]
-            },
-            {
-                id: "priority",
-                question: "What is your top assistance priority?",
-                helpText: "Helps us fast-track your best match.",
-                type: "radio",
-                options: ["Housing Assistance", "Food Assistance", "Medical Benefits", "Income Support", "Utility Help", "Education Aid"]
+        // Create HTML for each digit with animation containers
+        for (var i = 0; i < timeString.length; i++) {
+            var char = timeString.charAt(i);
+            if (char === ':') {
+                digitsHtml += '<span class="timer-separator">:</span>';
+            } else {
+                digitsHtml += '<span class="timer-digit" data-value="' + char + '">' + char + '</span>';
             }
-        ];
-        
-        // Social proof notifications
-        var notifications = [
-            "Susan from [STATE] qualified for $750 in Housing Assistance 2 mins ago.",
-            "[COUNT] people in [ZIP] checking eligibility right now.",
-            "Mark from [CITY] just got $350 in Food Stamps.",
-            "Funds still available in [ZIP]—complete to secure your spot."
-        ];
-        
-        // Generate a random number between min and max
-        function getRandomNumber(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
         
-        // Enhanced countdown timer with digit flip animation
-        function formatTime(seconds) {
-            var minutes = Math.floor(seconds / 60);
-            var remainingSeconds = seconds % 60;
+        timerElement.innerHTML = digitsHtml;
+    }
+    
+    // Update countdown timer with animation
+    function updateTimer() {
+        if (timeLeft > 0) {
+            timeLeft--;
+            var newTimeString = formatTime(timeLeft);
+            var timerDigits = document.querySelectorAll('.timer-digit');
             
-            return minutes.toString().padStart(2, '0') + ":" + 
-                   remainingSeconds.toString().padStart(2, '0');
-        }
-        
-        // Create flipping digit animation for timer
-        function initializeTimer() {
-            var timerElement = document.getElementById('countdown-timer');
-            var timeString = formatTime(timeLeft);
-            var digitsHtml = '';
-            
-            // Create HTML for each digit with animation containers
-            for (var i = 0; i < timeString.length; i++) {
-                var char = timeString.charAt(i);
-                if (char === ':') {
-                    digitsHtml += '<span class="timer-separator">:</span>';
-                } else {
-                    digitsHtml += '<span class="timer-digit" data-value="' + char + '">' + char + '</span>';
-                }
-            }
-            
-            timerElement.innerHTML = digitsHtml;
-        }
-        
-        // Update countdown timer with animation
-        function updateTimer() {
-            if (timeLeft > 0) {
-                timeLeft--;
-                var newTimeString = formatTime(timeLeft);
-                var timerDigits = document.querySelectorAll('.timer-digit');
+            // Update each digit with animation if changed
+            for (var i = 0; i < timerDigits.length; i++) {
+                var currentValue = timerDigits[i].getAttribute('data-value');
+                var newValue = i < newTimeString.length ? 
+                             (newTimeString.charAt(i) === ':' ? ':' : newTimeString.charAt(i)) : '';
                 
-                // Update each digit with animation if changed
-                for (var i = 0; i < timerDigits.length; i++) {
-                    var currentValue = timerDigits[i].getAttribute('data-value');
-                    var newValue = i < newTimeString.length ? 
-                                 (newTimeString.charAt(i) === ':' ? ':' : newTimeString.charAt(i)) : '';
+                if (currentValue !== newValue && newValue !== ':') {
+                    // Create flip animation effect
+                    timerDigits[i].innerHTML = newValue;
+                    timerDigits[i].setAttribute('data-value', newValue);
                     
-                    if (currentValue !== newValue && newValue !== ':') {
-                        // Create flip animation effect
-                        timerDigits[i].innerHTML = newValue;
-                        timerDigits[i].setAttribute('data-value', newValue);
-                        
-                        // Add animation class and remove it after animation completes
-                        timerDigits[i].classList.add('flip-animation');
-                        setTimeout((function(digit) {
-                            return function() {
-                                digit.classList.remove('flip-animation');
-                            };
-                        })(timerDigits[i]), 300);
-                    }
+                    // Add animation class and remove it after animation completes
+                    timerDigits[i].classList.add('flip-animation');
+                    setTimeout((function(digit) {
+                        return function() {
+                            digit.classList.remove('flip-animation');
+                        };
+                    })(timerDigits[i]), 300);
                 }
-                
-                // Create urgency by changing color when time gets low
-                if (timeLeft < 60) {
-                    document.querySelectorAll('.timer-digit, .timer-separator').forEach(function(el) {
-                        el.style.color = 'red';
-                    });
-                }
-            } else {
-                clearInterval(timerInterval);
-                
-                // Add logic to handle timer expiration
-                // E.g., show a message or redirect
             }
+            
+            // Create urgency by changing color when time gets low
+            if (timeLeft < 60) {
+                document.querySelectorAll('.timer-digit, .timer-separator').forEach(function(el) {
+                    el.style.color = 'red';
+                });
+            }
+        } else {
+            clearInterval(timerInterval);
+            
+            // Add logic to handle timer expiration
+            // E.g., show a message or redirect
+        }
+    }
+    
+    // Setup countdown timer
+    var timerInterval;
+    
+    // Show a notification with enhanced animation
+    function showNotification(questionNumber) {
+        // Only show notifications on questions 2, 5, 7, and 9
+        if ([1, 4, 6, 8].indexOf(questionNumber) === -1) return;
+        
+        var index = Math.floor([1, 4, 6, 8].indexOf(questionNumber) % notifications.length);
+        var message = notifications[index];
+        
+        // Replace placeholders with dynamic content
+        if (quizData.state) {
+            message = message.replace('[STATE]', quizData.state);
+        } else {
+            message = message.replace('[STATE]', states[getRandomNumber(0, states.length - 1)]);
         }
         
-        // Setup countdown timer
-        var timerInterval;
+        message = message.replace('[ZIP]', getRandomNumber(10000, 99999));
+        message = message.replace('[COUNT]', getRandomNumber(3, 12));
         
-        // Show a notification with enhanced animation
-        function showNotification(questionNumber) {
-            // Only show notifications on questions 2, 5, 7, and 9
-            if ([1, 4, 6, 8].indexOf(questionNumber) === -1) return;
-            
-            var index = Math.floor([1, 4, 6, 8].indexOf(questionNumber) % notifications.length);
-            var message = notifications[index];
-            
-            // Replace placeholders with dynamic content
-            if (quizData.state) {
-                message = message.replace('[STATE]', quizData.state);
-            } else {
-                message = message.replace('[STATE]', states[getRandomNumber(0, states.length - 1)]);
-            }
-            
-            message = message.replace('[ZIP]', getRandomNumber(10000, 99999));
-            message = message.replace('[COUNT]', getRandomNumber(3, 12));
-            
-            // List of random cities
-            var cities = ["Springfield", "Riverside", "Georgetown", "Franklin", "Greenville", "Bristol", "Clinton", "Salem"];
-            message = message.replace('[CITY]', cities[getRandomNumber(0, cities.length - 1)]);
-            
-            // Set notification text and show it
-            document.getElementById('notification-text').textContent = message;
-            document.getElementById('notification').classList.add('show');
-            
-            // Hide notification after delay
-            setTimeout(function() {
-                document.getElementById('notification').classList.remove('show');
-            }, 6000);
-        }
+        // List of random cities
+        var cities = ["Springfield", "Riverside", "Georgetown", "Franklin", "Greenville", "Bristol", "Clinton", "Salem"];
+        message = message.replace('[CITY]', cities[getRandomNumber(0, cities.length - 1)]);
         
-        // Build quiz slide for the current question with enhanced animation
-        function buildQuizSlide(questionIndex) {
-            var question = questions[questionIndex];
-            var slideContent = '';
+        // Set notification text and show it
+        document.getElementById('notification-text').textContent = message;
+        document.getElementById('notification').classList.add('show');
+        
+        // Hide notification after delay
+        setTimeout(function() {
+            document.getElementById('notification').classList.remove('show');
+        }, 6000);
+    }
+    
+    // Build quiz slide for the current question with enhanced animation
+    function buildQuizSlide(questionIndex) {
+        var question = questions[questionIndex];
+        var slideContent = '';
+        
+        slideContent += '<div class="question-container" data-aos="fade-up">';
+        slideContent += '<h3 class="question">' + question.question + '</h3>';
+        slideContent += '<p class="help-text">' + question.helpText + '</p>';
+        
+        // Create the appropriate input based on question type
+        if (question.type === "dropdown") {
+            slideContent += '<select id="' + question.id + '">';
+            slideContent += '<option value="">-- Select One --</option>';
             
-            slideContent += '<div class="question-container" data-aos="fade-up">';
-            slideContent += '<h3 class="question">' + question.question + '</h3>';
-            slideContent += '<p class="help-text">' + question.helpText + '</p>';
+            question.options.forEach(function(option) {
+                slideContent += '<option value="' + option + '">' + option + '</option>';
+            });
             
-            // Create the appropriate input based on question type
-            if (question.type === "dropdown") {
-                slideContent += '<select id="' + question.id + '">';
-                slideContent += '<option value="">-- Select One --</option>';
-                
-                question.options.forEach(function(option) {
-                    slideContent += '<option value="' + option + '">' + option + '</option>';
-                });
-                
-                slideContent += '</select>';
-            } else if (question.type === "radio") {
-                slideContent += '<div class="radio-group">';
-                
-                question.options.forEach(function(option, index) {
-                    // Add data-aos-delay for staggered animation
-                    var delay = 50 * index;
-                    slideContent += '<div class="radio-option" data-value="' + option + '" data-aos="fade-up" data-aos-delay="' + delay + '">';
-                    slideContent += '<input type="radio" name="' + question.id + '" value="' + option + '"> ' + option;
-                    slideContent += '</div>';
-                });
-                
+            slideContent += '</select>';
+        } else if (question.type === "radio") {
+            slideContent += '<div class="radio-group">';
+            
+            question.options.forEach(function(option, index) {
+                // Add data-aos-delay for staggered animation
+                var delay = 50 * index;
+                slideContent += '<div class="radio-option" data-value="' + option + '" data-aos="fade-up" data-aos-delay="' + delay + '">';
+                slideContent += '<input type="radio" name="' + question.id + '" value="' + option + '"> ' + option;
                 slideContent += '</div>';
-            } else if (question.type === "checkbox") {
-                slideContent += '<div class="checkbox-group">';
-                
-                question.options.forEach(function(option, index) {
-                    // Add data-aos-delay for staggered animation
-                    var delay = 50 * index;
-                    slideContent += '<div class="checkbox-option" data-value="' + option + '" data-aos="fade-up" data-aos-delay="' + delay + '">';
-                    slideContent += '<input type="checkbox" name="' + question.id + '" value="' + option + '"> ' + option;
-                    slideContent += '</div>';
-                });
-                
-                slideContent += '</div>';
-            }
+            });
             
             slideContent += '</div>';
+        } else if (question.type === "checkbox") {
+            slideContent += '<div class="checkbox-group">';
             
-            return slideContent;
-        }
-        
-        // Initialize quiz with enhanced animations
-        function initQuiz() {
-            // Create auto-save object in localStorage if not exists
-            if (!localStorage.getItem('benefitsQuizData')) {
-                localStorage.setItem('benefitsQuizData', JSON.stringify({}));
-            } else {
-                // Load previously saved data
-                quizData = JSON.parse(localStorage.getItem('benefitsQuizData'));
-            }
-            
-            // Hide hero section with fade-out and show quiz with fade-in
-            var heroSection = document.getElementById('hero-section');
-            var quizContainer = document.getElementById('quiz-container');
-            
-            heroSection.style.opacity = '0';
-            heroSection.style.transform = 'translateY(-20px)';
-            heroSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            
-            setTimeout(function() {
-                heroSection.style.display = 'none';
-                quizContainer.style.display = 'block';
-                
-                // Trigger fade-in for quiz
-                setTimeout(function() {
-                    quizContainer.classList.add('quiz-active');
-                    
-                    // Initialize AOS for new elements
-                    AOS.refreshHard();
-                }, 50);
-            }, 300);
-            
-            // Set up first quiz slide
-            document.getElementById('quiz-slides').innerHTML = buildQuizSlide(0);
-            updateProgress(0);
-            
-            // Add event listeners for radio and checkbox options
-            setupOptionListeners();
-            
-            // Attempt to pre-select options if coming back to quiz
-            if (quizData[questions[0].id]) {
-                preSelectAnswers(0);
-            }
-        }
-        
-        // Pre-select answers based on saved data
-        function preSelectAnswers(questionIndex) {
-            var question = questions[questionIndex];
-            var savedValue = quizData[question.id];
-            
-            if (!savedValue) return;
-            
-            if (question.type === "dropdown") {
-                var select = document.getElementById(question.id);
-                if (select) {
-                    for (var i = 0; i < select.options.length; i++) {
-                        if (select.options[i].value === savedValue) {
-                            select.selectedIndex = i;
-                            break;
-                        }
-                    }
-                }
-            } else if (question.type === "radio") {
-                var radioOptions = document.querySelectorAll('input[name="' + question.id + '"]');
-                radioOptions.forEach(function(radio) {
-                    if (radio.value === savedValue) {
-                        radio.checked = true;
-                        radio.parentNode.classList.add('selected');
-                    }
-                });
-            } else if (question.type === "checkbox" && Array.isArray(savedValue)) {
-                var checkboxOptions = document.querySelectorAll('input[name="' + question.id + '"]');
-                checkboxOptions.forEach(function(checkbox) {
-                    if (savedValue.indexOf(checkbox.value) !== -1) {
-                        checkbox.checked = true;
-                        checkbox.parentNode.classList.add('selected');
-                    }
-                });
-            }
-        }
-        
-        // Enhanced setup for radio and checkbox options with animations
-        function setupOptionListeners() {
-            // For radio options
-            var radioOptions = document.querySelectorAll('.radio-option');
-            radioOptions.forEach(function(option) {
-                option.addEventListener('click', function() {
-                    var radioInput = this.querySelector('input[type="radio"]');
-                    if (radioInput) {
-                        // Add subtle click animation
-                        this.classList.add('clicked');
-                        setTimeout(() => {
-                            this.classList.remove('clicked');
-                        }, 300);
-                        
-                        // Clear all selections in this group
-                        var name = radioInput.getAttribute('name');
-                        document.querySelectorAll('input[name="' + name + '"]').forEach(function(input) {
-                            input.checked = false;
-                            input.parentNode.classList.remove('selected');
-                        });
-                        
-                        // Select this option with animation
-                        radioInput.checked = true;
-                        this.classList.add('selected');
-                        
-                        // Save to quizData
-                        quizData[name] = radioInput.value;
-                        localStorage.setItem('benefitsQuizData', JSON.stringify(quizData));
-                    }
-                });
+            question.options.forEach(function(option, index) {
+                // Add data-aos-delay for staggered animation
+                var delay = 50 * index;
+                slideContent += '<div class="checkbox-option" data-value="' + option + '" data-aos="fade-up" data-aos-delay="' + delay + '">';
+                slideContent += '<input type="checkbox" name="' + question.id + '" value="' + option + '"> ' + option;
+                slideContent += '</div>';
             });
             
-            // For checkbox options
-            var checkboxOptions = document.querySelectorAll('.checkbox-option');
-            checkboxOptions.forEach(function(option) {
-                option.addEventListener('click', function() {
-                    var checkboxInput = this.querySelector('input[type="checkbox"]');
-                    if (checkboxInput) {
-                        // Add subtle click animation
-                        this.classList.add('clicked');
-                        setTimeout(() => {
-                            this.classList.remove('clicked');
-                        }, 300);
-                        
-                        checkboxInput.checked = !checkboxInput.checked;
-                        this.classList.toggle('selected', checkboxInput.checked);
-                        
-                        // Save to quizData
-                        var name = checkboxInput.getAttribute('name');
-                        var checkboxValues = [];
-                        document.querySelectorAll('input[name="' + name + '"]:checked').forEach(function(input) {
-                            checkboxValues.push(input.value);
-                        });
-                        
-                        quizData[name] = checkboxValues;
-                        localStorage.setItem('benefitsQuizData', JSON.stringify(quizData));
+            slideContent += '</div>';
+        }
+        
+        slideContent += '</div>';
+        
+        return slideContent;
+    }
+    
+    // Initialize quiz with enhanced animations
+    function initQuiz() {
+        // Create auto-save object in localStorage if not exists
+        if (!localStorage.getItem('benefitsQuizData')) {
+            localStorage.setItem('benefitsQuizData', JSON.stringify({}));
+        } else {
+            // Load previously saved data
+            quizData = JSON.parse(localStorage.getItem('benefitsQuizData'));
+        }
+        
+        // Hide hero section with fade-out and show quiz with fade-in
+        var heroSection = document.getElementById('hero-section');
+        var quizContainer = document.getElementById('quiz-container');
+        
+        heroSection.style.opacity = '0';
+        heroSection.style.transform = 'translateY(-20px)';
+        heroSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        
+        setTimeout(function() {
+            heroSection.style.display = 'none';
+            quizContainer.style.display = 'block';
+            
+            // Trigger fade-in for quiz
+            setTimeout(function() {
+                quizContainer.classList.add('quiz-active');
+                
+                // Initialize AOS for new elements
+                AOS.refreshHard();
+            }, 50);
+        }, 300);
+        
+        // Set up first quiz slide
+        document.getElementById('quiz-slides').innerHTML = buildQuizSlide(0);
+        updateProgress(0);
+        
+        // Add event listeners for radio and checkbox options
+        setupOptionListeners();
+        
+        // Attempt to pre-select options if coming back to quiz
+        if (quizData[questions[0].id]) {
+            preSelectAnswers(0);
+        }
+    }
+    
+    // Pre-select answers based on saved data
+    function preSelectAnswers(questionIndex) {
+        var question = questions[questionIndex];
+        var savedValue = quizData[question.id];
+        
+        if (!savedValue) return;
+        
+        if (question.type === "dropdown") {
+            var select = document.getElementById(question.id);
+            if (select) {
+                for (var i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === savedValue) {
+                        select.selectedIndex = i;
+                        break;
                     }
-                });
+                }
+            }
+        } else if (question.type === "radio") {
+            var radioOptions = document.querySelectorAll('input[name="' + question.id + '"]');
+            radioOptions.forEach(function(radio) {
+                if (radio.value === savedValue) {
+                    radio.checked = true;
+                    radio.parentNode.classList.add('selected');
+                }
+            });
+        } else if (question.type === "checkbox" && Array.isArray(savedValue)) {
+            var checkboxOptions = document.querySelectorAll('input[name="' + question.id + '"]');
+            checkboxOptions.forEach(function(checkbox) {
+                if (savedValue.indexOf(checkbox.value) !== -1) {
+                    checkbox.checked = true;
+                    checkbox.parentNode.classList.add('selected');
+                }
             });
         }
-        
-        // Update progress bar and text with enhanced tooltip
-        function updateProgress(questionIndex) {
-            var progressPercentage = ((questionIndex + 1) / totalQuestions) * 100;
-            var progressBar = document.getElementById('progress-bar');
-            var progressFill = document.getElementById('progress-fill');
-            
-            // Set progress tooltip
-            progressBar.setAttribute('data-tooltip', Math.round(progressPercentage) + '% complete');
-            
-            // Animate progress fill
-            progressFill.style.width = progressPercentage + '%';
-            
-            // Update question number with number animation
-            document.getElementById('question-number').textContent = 'Question ' + (questionIndex + 1) + ' of ' + totalQuestions;
-            
-            // Update time remaining text with animation
-            var timeRemainingText = '';
-            if (questionIndex < 3) {
-                timeRemainingText = 'About 2 min left';
-            } else if (questionIndex < 6) {
-                timeRemainingText = 'About 1 min left';
-            } else {
-                timeRemainingText = 'Almost done!';
-            }
-            
-            var timeRemainingElement = document.getElementById('time-remaining');
-            timeRemainingElement.style.opacity = '0';
-            
-            setTimeout(function() {
-                timeRemainingElement.textContent = timeRemainingText;
-                timeRemainingElement.style.opacity = '1';
-            }, 300);
-        }
-        
-        // Validate current question with enhanced animation
-        function validateCurrentQuestion() {
-            var question = questions[currentQuestion];
-            var isValid = false;
-            
-            if (question.type === "dropdown") {
-                var select = document.getElementById(question.id);
-                isValid = select && select.value !== "";
-                
-                if (isValid) {
-                    quizData[question.id] = select.value;
-                }
-            } else if (question.type === "radio") {
-                var checkedRadio = document.querySelector('input[name="' + question.id + '"]:checked');
-                isValid = checkedRadio !== null;
-                
-                if (isValid) {
-                    quizData[question.id] = checkedRadio.value;
-                }
-            } else if (question.type === "checkbox") {
-                var checkedBoxes = document.querySelectorAll('input[name="' + question.id + '"]:checked');
-                isValid = checkedBoxes.length > 0;
-                
-                if (isValid) {
-                    var values = [];
-                    checkedBoxes.forEach(function(checkbox) {
-                        values.push(checkbox.value);
-                    });
-                    quizData[question.id] = values;
-                }
-            }
-            
-            // Save to localStorage
-            if (isValid) {
-                localStorage.setItem('benefitsQuizData', JSON.stringify(quizData));
-            } else {
-                // Shake animation for error
-                var questionContainer = document.querySelector('.question-container');
-                questionContainer.classList.add('shake');
-                
-                setTimeout(function() {
-                    questionContainer.classList.remove('shake');
-                }, 600);
-                
-                // Highlight the question container to indicate validation error
-                questionContainer.style.borderColor = '#e74c3c';
-                questionContainer.style.backgroundColor = '#fff5f5';
-                
-                setTimeout(function() {
-                    questionContainer.style.borderColor = '';
-                    questionContainer.style.backgroundColor = '';
-                }, 1500);
-            }
-            
-            return isValid;
-        }
-        
-        // Show the analysis section with enhanced loading animation
-        function showAnalysisSection() {
-            var quizContainer = document.getElementById('quiz-container');
-            var analyzingSection = document.getElementById('analyzing-section');
-            
-            // Fade out quiz
-            quizContainer.style.opacity = '0';
-            quizContainer.style.transform = 'translateY(-20px)';
-            quizContainer.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            
-            setTimeout(function() {
-                quizContainer.style.display = 'none';
-                analyzingSection.style.display = 'block';
-                
-                // Fade in analyzing section
-                analyzingSection.style.opacity = '0';
-                analyzingSection.style.transform = 'translateY(20px)';
-                analyzingSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                
-                setTimeout(function() {
-                    analyzingSection.style.opacity = '1';
-                    analyzingSection.style.transform = 'translateY(0)';
-                }, 50);
-            }, 300);
-            
-            var messageIndex = 0;
-            var messageInterval = setInterval(function() {
-                var messageElement = document.getElementById('analyzing-message');
-                
-                // Fade out current message
-                messageElement.style.opacity = '0';
-                messageElement.style.transform = 'translateY(-10px)';
-                
-                setTimeout(function() {
-                    messageElement.textContent = analyzeMessages[messageIndex];
-                    
-                    // Fade in new message
-                    messageElement.style.opacity = '1';
-                    messageElement.style.transform = 'translateY(0)';
-                    
-                    messageIndex = (messageIndex + 1) % analyzeMessages.length;
-                }, 300);
-            }, 1800);
-            
-            // After 5-8 seconds, show results
-            setTimeout(function() {
-                clearInterval(messageInterval);
-                showResults();
-            }, getRandomNumber(5000, 8000));
-        }
-        
-        // Generate matched programs based on quiz answers
-        function generatePrograms() {
-            var programs = [];
-            var income = quizData.income || "$2,001 - $3,000";
-            var household = quizData.household || "3";
-            var struggles = quizData.struggles || ["Food", "Utilities"];
-            var housing = quizData.housing || "Rent";
-            
-            // Housing assistance program
-            if (housing === "Rent" || housing === "Other") {
-                var amount = "$" + getRandomNumber(750, 1200);
-                if (parseInt(household) > 2) {
-                    amount = "$" + getRandomNumber(950, 1500);
-                }
-                
-                programs.push({
-                    name: "Housing Choice Voucher Program (Section 8)",
-                    amount: "Up to " + amount + " per month",
-                    description: "Helps low-income families afford safe and sanitary housing in the private market."
-                });
-            }
-            
-            // Food assistance program
-            if (Array.isArray(struggles) && struggles.indexOf("Food") !== -1) {
-                var amount = "$" + getRandomNumber(175, 450);
-                if (parseInt(household) > 2) {
-                    amount = "$" + getRandomNumber(375, 750);
-                }
-                
-                programs.push({
-                    name: "Supplemental Nutrition Assistance Program (SNAP)",
-                    amount: "Up to " + amount + " per month",
-                    description: "Provides nutrition benefits to supplement the food budget of families in need."
-                });
-            }
-            
-            // Utility assistance program
-            if (Array.isArray(struggles) && struggles.indexOf("Utilities") !== -1) {
-                programs.push({
-                    name: "Low Income Home Energy Assistance Program (LIHEAP)",
-                    amount: "Up to $" + getRandomNumber(350, 850) + " per year",
-                    description: "Helps keep families safe and healthy through initiatives that assist with energy costs."
-                });
-            }
-            
-            // Healthcare assistance
-            if (Array.isArray(struggles) && struggles.indexOf("Healthcare") !== -1) {
-                programs.push({
-                    name: "Medicaid Health Coverage",
-                    amount: "Full Coverage",
-                    description: "Provides health coverage to eligible low-income adults, children, pregnant women, elderly adults and people with disabilities."
-                });
-            }
-            
-            // Ensure we have at least 2 programs
-            if (programs.length < 2) {
-                programs.push({
-                    name: "Emergency Assistance Fund",
-                    amount: "Up to $" + getRandomNumber(500, 1200),
-                    description: "One-time emergency assistance for eligible households facing financial hardship."
-                });
-            }
-            
-            return programs;
-        }
-        
-        // Show results section with enhanced animations
-        function showResults() {
-            var analyzingSection = document.getElementById('analyzing-section');
-            var resultsSection = document.getElementById('results-section');
-            
-            // Fade out analyzing section
-            analyzingSection.style.opacity = '0';
-            analyzingSection.style.transform = 'translateY(-20px)';
-            analyzingSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            
-            setTimeout(function() {
-                analyzingSection.style.display = 'none';
-                resultsSection.style.display = 'block';
-                
-                // Fade in results section with staggered animations
-                setTimeout(function() {
-                    resultsSection.style.opacity = '1';
-                    resultsSection.style.transform = 'translateY(0)';
-                    
-                    // Set personalization line
-                    var income = quizData.income || "$2,001 - $3,000";
-                    var household = quizData.household || "3";
-                    document.getElementById('personalization-line').textContent = 
-                        "Based on your household of " + household + " and income of " + income + "...";
-                    
-                    // Set eligibility score with animation
-                    var score = getRandomNumber(75, 95);
-                    var gaugePercentage = document.getElementById('gauge-percentage');
-                    var gaugeFill = document.getElementById('gauge-fill');
-                    
-                    gaugePercentage.textContent = score + "%";
-                    
-                    // Animate gauge filling
-                    setTimeout(function() {
-                        gaugeFill.style.height = score + "%";
-                        
-                        // Make sure the percentage text is visible and centered after animation
-                        setTimeout(function() {
-                            gaugePercentage.style.opacity = '1';
-                            
-                            if (score < 85) {
-                                gaugePercentage.style.color = "#1a4b8c";
-                                gaugePercentage.style.textShadow = "none";
-                                gaugePercentage.style.bottom = "5px";
-                            }
-                        }, 1500);
-                    }, 500);
-                    
-                    // Generate and populate matched programs with staggered animations
-                    var programs = generatePrograms();
-                    var programsContainer = document.getElementById('matched-programs');
-                    var programsHtml = '';
-                    
-                    programs.forEach(function(program, index) {
-                        programsHtml += '<div class="program-item" id="program-' + index + '">';
-                        programsHtml += '<div class="program-name">' + program.name + '</div>';
-                        programsHtml += '<div class="program-amount">' + program.amount + '</div>';
-                        programsHtml += '<div class="program-desc">' + program.description + '</div>';
-                        programsHtml += '</div>';
-                    });
-                    
-                    programsContainer.innerHTML = programsHtml;
-                    programsContainer.classList.add('show');
-                    
-                    // Animate each program item with staggered delay
-                    programs.forEach(function(program, index) {
-                        setTimeout(function() {
-                            var programItem = document.getElementById('program-' + index);
-                            programItem.style.opacity = '1';
-                            programItem.style.transform = 'translateY(0)';
-                        }, 200 + (index * 200));
-                    });
-                    
-                    // Set spots left with animation
-                    var spotsLeft = getRandomNumber(3, 12);
-                    var spotsElement = document.getElementById('spots-left');
-                    spotsElement.textContent = "Only " + spotsLeft + " spots left in your area";
-                    
-                    // Pulse animation for spots left
-                    setInterval(function() {
-                        spotsElement.classList.add('pulse');
-                        setTimeout(function() {
-                            spotsElement.classList.remove('pulse');
-                        }, 1000);
-                    }, 5000);
-                    
-                }, 50);
-            }, 300);
-        }
-        
-        // Show survey after guide button click with animation
-        function showSurvey() {
-            var guideButton = document.getElementById('get-guide');
-            var surveyContainer = document.getElementById('survey-container');
-            
-            // Fade out guide button
-            guideButton.style.opacity = '0';
-            guideButton.style.transform = 'translateY(-10px)';
-            guideButton.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            
-            setTimeout(function() {
-                guideButton.style.display = 'none';
-                
-                // Reveal survey container with animation
-                surveyContainer.style.display = 'block';
-                
-                // Trigger animation
-                setTimeout(function() {
-                    surveyContainer.classList.add('show');
-                    
-                    // Add entrance animations to survey elements
-                    var formGroups = surveyContainer.querySelectorAll('.form-group');
-                    formGroups.forEach(function(group, index) {
-                        group.style.opacity = '0';
-                        group.style.transform = 'translateY(20px)';
-                        group.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                        
-                        setTimeout(function() {
-                            group.style.opacity = '1';
-                            group.style.transform = 'translateY(0)';
-                        }, 100 + (index * 150));
-                    });
-                    
-                    // Animate the submit button
-                    var submitButton = document.getElementById('submit-survey');
-                    submitButton.style.opacity = '0';
-                    submitButton.style.transform = 'translateY(20px)';
-                    submitButton.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    
-                    setTimeout(function() {
-                        submitButton.style.opacity = '1';
-                        submitButton.style.transform = 'translateY(0)';
-                    }, 100 + (formGroups.length * 150));
-                    
-                }, 50);
-                
-                // Scroll to survey with smooth animation
-                document.getElementById('survey-container').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }, 300);
-        }
-        
-        // Add scroll animations using Intersection Observer
-        function setupScrollAnimations() {
-            // Check if IntersectionObserver is supported
-            if (!('IntersectionObserver' in window)) {
-                // Fallback for browsers that don't support IntersectionObserver
-                var elementsToAnimate = document.querySelectorAll('.program-item, .eligibility-score, .expiry-notice');
-                elementsToAnimate.forEach(function(el) {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                });
-                return;
-            }
-            
-            // Create observer for animations
-            var observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        // Add animation class when element is visible
-                        entry.target.classList.add('animate-in');
-                        // Unobserve after animation is triggered
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                root: null, // viewport
-                threshold: 0.1, // trigger when 10% of the element is visible
-                rootMargin: '0px 0px -50px 0px' // trigger a bit before the element is in view
-            });
-            
-            // Observe elements that should animate on scroll
-            var elementsToAnimate = document.querySelectorAll('.program-item, .eligibility-score, .expiry-notice');
-            elementsToAnimate.forEach(function(el) {
-                observer.observe(el);
-            });
-        }
-        
-        // Animate countdown timer digits
-        function animateTimer() {
-            // Add CSS class for digit flipping animation
-            var style = document.createElement('style');
-            style.textContent = `
-                @keyframes flipTop {
-                    0% { transform: rotateX(0deg); }
-                    50%, 100% { transform: rotateX(-90deg); }
-                }
-                
-                @keyframes flipBottom {
-                    0%, 50% { transform: rotateX(90deg); }
-                    100% { transform: rotateX(0deg); }
-                }
-                
-                .timer-digit {
-                    position: relative;
-                    display: inline-block;
-                    padding: 0 3px;
-                }
-                
-                .flip-animation {
-                    animation: flash 0.3s;
-                }
-                
-                @keyframes flash {
-                    0% { opacity: 1; }
-                    50% { opacity: 0.5; }
-                    100% { opacity: 1; }
-                }
-                
-                .shake {
-                    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-                }
-                
-                @keyframes shake {
-                    10%, 90% { transform: translate3d(-1px, 0, 0); }
-                    20%, 80% { transform: translate3d(2px, 0, 0); }
-                    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-                    40%, 60% { transform: translate3d(4px, 0, 0); }
-                }
-                
-                .clicked {
-                    animation: click 0.3s;
-                }
-                
-                @keyframes click {
-                    0% { transform: scale(1); }
-                    50% { transform: scale(0.97); }
-                    100% { transform: scale(1); }
-                }
-                
-                .pulse {
-                    animation: pulse-animation 1s;
-                }
-                
-                @keyframes pulse-animation {
-                    0% { opacity: 1; }
-                    50% { opacity: 0.6; }
-                    100% { opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize animations
-            animateTimer();
-            initializeTimer();
-            
-            // Setup countdown timer
-            timerInterval = setInterval(updateTimer, 1000);
-            
-            // Start Quiz Button
-            document.getElementById('start-quiz').addEventListener('click', initQuiz);
-            
-            // Next Question Button with enhanced transition
-            document.getElementById('next-question').addEventListener('click', function() {
-                if (validateCurrentQuestion()) {
-                    // Add click animation
+    }
+    
+    // Enhanced setup for radio and checkbox options with animations
+    function setupOptionListeners() {
+        // For radio options
+        var radioOptions = document.querySelectorAll('.radio-option');
+        radioOptions.forEach(function(option) {
+            option.addEventListener('click', function() {
+                var radioInput = this.querySelector('input[type="radio"]');
+                if (radioInput) {
+                    // Add subtle click animation
                     this.classList.add('clicked');
                     setTimeout(() => {
                         this.classList.remove('clicked');
                     }, 300);
                     
-                    currentQuestion++;
+                    // Clear all selections in this group
+                    var name = radioInput.getAttribute('name');
+                    document.querySelectorAll('input[name="' + name + '"]').forEach(function(input) {
+                        input.checked = false;
+                        input.parentNode.classList.remove('selected');
+                    });
                     
-                    if (currentQuestion < totalQuestions) {
-                        // Fade out current slide
-                        var currentSlide = document.querySelector('.question-container');
-                        currentSlide.style.opacity = '0';
-                        currentSlide.style.transform = 'translateY(-20px)';
-                        currentSlide.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                        
-                        // Update progress before fade-in for smoother transition
-                        updateProgress(currentQuestion);
-                        
-                        // Wait for fade-out, then update content
-                        setTimeout(function() {
-                            document.getElementById('quiz-slides').innerHTML = buildQuizSlide(currentQuestion);
-                            
-                            // Refresh AOS animations
-                            AOS.refreshHard();
-                            
-                            // Setup listeners for new options
-                            setupOptionListeners();
-                            
-                            // Pre-select answers if available
-                            if (quizData[questions[currentQuestion].id]) {
-                                preSelectAnswers(currentQuestion);
-                            }
-                            
-                            // Show notification for certain questions
-                            showNotification(currentQuestion);
-                            
-                            // Change Continue button text for last question
-                            if (currentQuestion === totalQuestions - 1) {
-                                document.getElementById('next-question').textContent = 'Get My Free Benefits Guide';
-                            }
-                        }, 300);
-                    } else {
-                        // Quiz completed, show analysis
-                        showAnalysisSection();
-                    }
+                    // Select this option with animation
+                    radioInput.checked = true;
+                    this.classList.add('selected');
+                    
+                    // Save to quizData
+                    quizData[name] = radioInput.value;
+                    localStorage.setItem('benefitsQuizData', JSON.stringify(quizData));
                 }
             });
-            
-            // Get Guide Button
-            document.getElementById('get-guide').addEventListener('click', function() {
-                // Add click animation
-                this.classList.add('clicked');
-                setTimeout(() => {
-                    this.classList.remove('clicked');
-                }, 300);
-                
-                showSurvey();
+        });
+        
+        // For checkbox options
+        var checkboxOptions = document.querySelectorAll('.checkbox-option');
+        checkboxOptions.forEach(function(option) {
+            option.addEventListener('click', function() {
+                var checkboxInput = this.querySelector('input[type="checkbox"]');
+                if (checkboxInput) {
+                    // Add subtle click animation
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                    
+                    checkboxInput.checked = !checkboxInput.checked;
+                    this.classList.toggle('selected', checkboxInput.checked);
+                    
+                    // Save to quizData
+                    var name = checkboxInput.getAttribute('name');
+                    var checkboxValues = [];
+                    document.querySelectorAll('input[name="' + name + '"]:checked').forEach(function(input) {
+                        checkboxValues.push(input.value);
+                    });
+                    
+                    quizData[name] = checkboxValues;
+                    localStorage.setItem('benefitsQuizData', JSON.stringify(quizData));
+                }
             });
+        });
+    }
+    
+    // Update progress bar and text with enhanced tooltip
+    function updateProgress(questionIndex) {
+        var progressPercentage = ((questionIndex + 1) / totalQuestions) * 100;
+        var progressBar = document.getElementById('progress-bar');
+        var progressFill = document.getElementById('progress-fill');
+        
+        // Set progress tooltip
+        progressBar.setAttribute('data-tooltip', Math.round(progressPercentage) + '% complete');
+        
+        // Animate progress fill
+        progressFill.style.width = progressPercentage + '%';
+        
+        // Update question number with number animation
+        document.getElementById('question-number').textContent = 'Question ' + (questionIndex + 1) + ' of ' + totalQuestions;
+        
+        // Update time remaining text with animation
+        var timeRemainingText = '';
+        if (questionIndex < 3) {
+            timeRemainingText = 'About 2 min left';
+        } else if (questionIndex < 6) {
+            timeRemainingText = 'About 1 min left';
+        } else {
+            timeRemainingText = 'Almost done!';
+        }
+        
+        var timeRemainingElement = document.getElementById('time-remaining');
+        timeRemainingElement.style.opacity = '0';
+        
+        setTimeout(function() {
+            timeRemainingElement.textContent = timeRemainingText;
+            timeRemainingElement.style.opacity = '1';
+        }, 300);
+    }
+    
+    // Validate current question with enhanced animation
+    function validateCurrentQuestion() {
+        var question = questions[currentQuestion];
+        var isValid = false;
+        
+        if (question.type === "dropdown") {
+            var select = document.getElementById(question.id);
+            isValid = select && select.value !== "";
             
-            // Submit Survey Button
-            document.getElementById('submit-survey').addEventListener('click', function() {
-                // Add click animation
-                this.classList.add('clicked');
-                setTimeout(() => {
-                    this.classList.remove('clicked');
-                }, 300);
+            if (isValid) {
+                quizData[question.id] = select.value;
+            }
+        } else if (question.type === "radio") {
+            var checkedRadio = document.querySelector('input[name="' + question.id + '"]:checked');
+            isValid = checkedRadio !== null;
+            
+            if (isValid) {
+                quizData[question.id] = checkedRadio.value;
+            }
+        } else if (question.type === "checkbox") {
+            var checkedBoxes = document.querySelectorAll('input[name="' + question.id + '"]:checked');
+            isValid = checkedBoxes.length > 0;
+            
+            if (isValid) {
+                var values = [];
+                checkedBoxes.forEach(function(checkbox) {
+                    values.push(checkbox.value);
+                });
+                quizData[question.id] = values;
+            }
+        }
+        
+        // Save to localStorage
+        if (isValid) {
+            localStorage.setItem('benefitsQuizData', JSON.stringify(quizData));
+        } else {
+            // Shake animation for error
+            var questionContainer = document.querySelector('.question-container');
+            questionContainer.classList.add('shake');
+            
+            setTimeout(function() {
+                questionContainer.classList.remove('shake');
+            }, 600);
+            
+            // Highlight the question container to indicate validation error
+            questionContainer.style.borderColor = '#e74c3c';
+            questionContainer.style.backgroundColor = '#fff5f5';
+            
+            setTimeout(function() {
+                questionContainer.style.borderColor = '';
+                questionContainer.style.backgroundColor = '';
+            }, 1500);
+        }
+        
+        return isValid;
+    }
+    
+    // Show the analysis section with enhanced loading animation
+    function showAnalysisSection() {
+        var quizContainer = document.getElementById('quiz-container');
+        var analyzingSection = document.getElementById('analyzing-section');
+        
+        // Fade out quiz
+        quizContainer.style.opacity = '0';
+        quizContainer.style.transform = 'translateY(-20px)';
+        quizContainer.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        
+        setTimeout(function() {
+            quizContainer.style.display = 'none';
+            analyzingSection.style.display = 'block';
+            
+            // Fade in analyzing section
+            analyzingSection.style.opacity = '0';
+            analyzingSection.style.transform = 'translateY(20px)';
+            analyzingSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            
+            setTimeout(function() {
+                analyzingSection.style.opacity = '1';
+                analyzingSection.style.transform = 'translateY(0)';
+            }, 50);
+        }, 300);
+        
+        var messageIndex = 0;
+        var messageInterval = setInterval(function() {
+            var messageElement = document.getElementById('analyzing-message');
+            
+            // Fade out current message
+            messageElement.style.opacity = '0';
+            messageElement.style.transform = 'translateY(-10px)';
+            
+            setTimeout(function() {
+                messageElement.textContent = analyzeMessages[messageIndex];
                 
-                // Show success message with animation
-                var successMessage = document.createElement('div');
-                successMessage.className = 'success-message';
-                successMessage.innerHTML = `
-                    <div class="success-icon">✓</div>
-                    <h3>Thank You!</h3>
-                    <p>Your free benefits guide has been generated and will be delivered shortly.</p>
-                `;
+                // Fade in new message
+                messageElement.style.opacity = '1';
+                messageElement.style.transform = 'translateY(0)';
                 
-                successMessage.style.opacity = '0';
-                successMessage.style.transform = 'translateY(20px)';
-                successMessage.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                messageIndex = (messageIndex + 1) % analyzeMessages.length;
+            }, 300);
+        }, 1800);
+        
+        // After 5-8 seconds, show results
+        setTimeout(function() {
+            clearInterval(messageInterval);
+            showResults();
+        }, getRandomNumber(5000, 8000));
+    }
+    
+    // Generate matched programs based on quiz answers
+    function generatePrograms() {
+        var programs = [];
+        var income = quizData.income || "$2,001 - $3,000";
+        var household = quizData.household || "3";
+        var struggles = quizData.struggles || ["Food", "Utilities"];
+        var housing = quizData.housing || "Rent";
+        
+        // Housing assistance program
+        if (housing === "Rent" || housing === "Other") {
+            var amount = "$" + getRandomNumber(750, 1200);
+            if (parseInt(household) > 2) {
+                amount = "$" + getRandomNumber(950, 1500);
+            }
+            
+            programs.push({
+                name: "Housing Choice Voucher Program (Section 8)",
+                amount: "Up to " + amount + " per month",
+                description: "Helps low-income families afford safe and sanitary housing in the private market."
+            });
+        }
+        
+        // Food assistance program
+        if (Array.isArray(struggles) && struggles.indexOf("Food") !== -1) {
+            var amount = "$" + getRandomNumber(175, 450);
+            if (parseInt(household) > 2) {
+                amount = "$" + getRandomNumber(375, 750);
+            }
+            
+            programs.push({
+                name: "Supplemental Nutrition Assistance Program (SNAP)",
+                amount: "Up to " + amount + " per month",
+                description: "Provides nutrition benefits to supplement the food budget of families in need."
+            });
+        }
+        
+        // Utility assistance program
+        if (Array.isArray(struggles) && struggles.indexOf("Utilities") !== -1) {
+            programs.push({
+                name: "Low Income Home Energy Assistance Program (LIHEAP)",
+                amount: "Up to $" + getRandomNumber(350, 850) + " per year",
+                description: "Helps keep families safe and healthy through initiatives that assist with energy costs."
+            });
+        }
+        
+        // Healthcare assistance
+        if (Array.isArray(struggles) && struggles.indexOf("Healthcare") !== -1) {
+            programs.push({
+                name: "Medicaid Health Coverage",
+                amount: "Full Coverage",
+                description: "Provides health coverage to eligible low-income adults, children, pregnant women, elderly adults and people with disabilities."
+            });
+        }
+        
+        // Ensure we have at least 2 programs
+        if (programs.length < 2) {
+            programs.push({
+                name: "Emergency Assistance Fund",
+                amount: "Up to $" + getRandomNumber(500, 1200),
+                description: "One-time emergency assistance for eligible households facing financial hardship."
+            });
+        }
+        
+        return programs;
+    }
+    
+    // Show results section with enhanced animations
+    function showResults() {
+        var analyzingSection = document.getElementById('analyzing-section');
+        var resultsSection = document.getElementById('results-section');
+        
+        // Fade out analyzing section
+        analyzingSection.style.opacity = '0';
+        analyzingSection.style.transform = 'translateY(-20px)';
+        analyzingSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        
+        setTimeout(function() {
+            analyzingSection.style.display = 'none';
+            resultsSection.style.display = 'block';
+            
+            // Fade in results section with staggered animations
+            setTimeout(function() {
+                resultsSection.style.opacity = '1';
+                resultsSection.style.transform = 'translateY(0)';
                 
-                // Replace survey with success message
-                var surveyContainer = document.getElementById('survey-container');
-                surveyContainer.innerHTML = '';
-                surveyContainer.appendChild(successMessage);
+                // Set personalization line
+                var income = quizData.income || "$2,001 - $3,000";
+                var household = quizData.household || "3";
+                document.getElementById('personalization-line').textContent = 
+                    "Based on your household of " + household + " and income of " + income + "...";
                 
-                // Animate success message
+                // Set eligibility score with animation
+                var score = getRandomNumber(75, 95);
+                var gaugePercentage = document.getElementById('gauge-percentage');
+                var gaugeFill = document.getElementById('gauge-fill');
+                
+                gaugePercentage.textContent = score + "%";
+                
+                // Animate gauge filling
                 setTimeout(function() {
-                    successMessage.style.opacity = '1';
-                    successMessage.style.transform = 'translateY(0)';
-                }, 100);
+                    gaugeFill.style.height = score + "%";
+                    
+                    // Make sure the percentage text is visible and centered after animation
+                    setTimeout(function() {
+                        gaugePercentage.style.opacity = '1';
+                        
+                        if (score < 85) {
+                            gaugePercentage.style.color = "#1a4b8c";
+                            gaugePercentage.style.textShadow = "none";
+                            gaugePercentage.style.bottom = "5px";
+                        }
+                    }, 1500);
+                }, 500);
                 
-                // Add confetti effect
-                addConfettiEffect();
-            });
-            
-            // Enhance radio and checkbox options with micro-interactions
-            document.addEventListener('mousedown', function(e) {
-                if (e.target.classList.contains('radio-option') || e.target.classList.contains('checkbox-option')) {
-                    e.target.style.transform = 'scale(0.98)';
-                }
-            });
-            
-            document.addEventListener('mouseup', function(e) {
-                if (e.target.classList.contains('radio-option') || e.target.classList.contains('checkbox-option')) {
-                    e.target.style.transform = '';
-                }
-            });
-            
-            // A/B Test: Randomize headline variants with animation
-            var headlineVariants = [
-                "See Which 2025 Government Benefits You're Missing Out On",
-                "Check Your Eligibility for Up to $4,700 in Government Benefits",
-                "Government Benefits Check: What You May Qualify For in 2025"
-            ];
-            
-            var subheadlineVariants = [
-                "Americans are receiving up to $4,700 in benefits they didn't know about",
-                "Most people miss out on at least 3 benefits they qualify for",
-                "Claim your share of available government assistance programs"
-            ];
-            
-            // Randomly select variants (simulating A/B test)
-            var headlineIndex = getRandomNumber(0, headlineVariants.length - 1);
-            var subheadlineIndex = getRandomNumber(0, subheadlineVariants.length - 1);
-            
-            // Apply variants with typewriter effect
-            var headlineElement = document.querySelector('.hero h1');
-            var subheadlineElement = document.querySelector('.hero h2');
-            
-            if (headlineElement && subheadlineElement) {
-                // Store original text
-                var originalHeadline = headlineElement.textContent;
-                var originalSubheadline = subheadlineElement.textContent;
+                // Generate and populate matched programs with staggered animations
+                var programs = generatePrograms();
+                var programsContainer = document.getElementById('matched-programs');
+                var programsHtml = '';
                 
-                // Apply new text with animation
-                setTimeout(function() {
-                    animateTextChange(headlineElement, headlineVariants[headlineIndex]);
+                programs.forEach(function(program, index) {
+                    programsHtml += '<div class="program-item" id="program-' + index + '">';
+                    programsHtml += '<div class="program-name">' + program.name + '</div>';
+                    programsHtml += '<div class="program-amount">' + program.amount + '</div>';
+                    programsHtml += '<div class="program-desc">' + program.description + '</div>';
+                    programsHtml += '</div>';
+                });
+                
+                programsContainer.innerHTML = programsHtml;
+                programsContainer.classList.add('show');
+                
+                // Animate each program item with staggered delay
+                programs.forEach(function(program, index) {
+                    setTimeout(function() {
+                        var programItem = document.getElementById('program-' + index);
+                        programItem.style.opacity = '1';
+                        programItem.style.transform = 'translateY(0)';
+                    }, 200 + (index * 200));
+                });
+                
+                // Set spots left with animation
+                var spotsLeft = getRandomNumber(3, 12);
+                var spotsElement = document.getElementById('spots-left');
+                spotsElement.textContent = "Only " + spotsLeft + " spots left in your area";
+                
+                // Pulse animation for spots left
+                setInterval(function() {
+                    spotsElement.classList.add('pulse');
+                    setTimeout(function() {
+                        spotsElement.classList.remove('pulse');
+                    }, 1000);
+                }, 5000);
+                
+            }, 50);
+        }, 300);
+    }
+    
+    // Show survey after guide button click with animation
+    function showSurvey() {
+        var guideButton = document.getElementById('get-guide');
+        var surveyContainer = document.getElementById('survey-container');
+        
+        // Fade out guide button
+        guideButton.style.opacity = '0';
+        guideButton.style.transform = 'translateY(-10px)';
+        guideButton.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        
+        setTimeout(function() {
+            guideButton.style.display = 'none';
+            
+            // Reveal survey container with animation
+            surveyContainer.style.display = 'block';
+            
+            // Trigger animation
+            setTimeout(function() {
+                surveyContainer.classList.add('show');
+                
+                // Add entrance animations to survey elements
+                var formGroups = surveyContainer.querySelectorAll('.form-group');
+                formGroups.forEach(function(group, index) {
+                    group.style.opacity = '0';
+                    group.style.transform = 'translateY(20px)';
+                    group.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     
                     setTimeout(function() {
-                        animateTextChange(subheadlineElement, subheadlineVariants[subheadlineIndex]);
-                    }, 800);
-                }, 500);
+                        group.style.opacity = '1';
+                        group.style.transform = 'translateY(0)';
+                    }, 100 + (index * 150));
+                });
+                
+                // Animate the submit button
+                var submitButton = document.getElementById('submit-survey');
+                submitButton.style.opacity = '0';
+                submitButton.style.transform = 'translateY(20px)';
+                submitButton.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                setTimeout(function() {
+                    submitButton.style.opacity = '1';
+                    submitButton.style.transform = 'translateY(0)';
+                }, 100 + (formGroups.length * 150));
+                
+            }, 50);
+            
+            // Scroll to survey with smooth animation
+            document.getElementById('survey-container').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 300);
+    }
+    
+    // Add scroll animations using Intersection Observer
+    function setupScrollAnimations() {
+        // Check if IntersectionObserver is supported
+        if (!('IntersectionObserver' in window)) {
+            // Fallback for browsers that don't support IntersectionObserver
+            var elementsToAnimate = document.querySelectorAll('.program-item, .eligibility-score, .expiry-notice');
+            elementsToAnimate.forEach(function(el) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
+            return;
+        }
+        
+        // Create observer for animations
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    // Add animation class when element is visible
+                    entry.target.classList.add('animate-in');
+                    // Unobserve after animation is triggered
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null, // viewport
+            threshold: 0.1, // trigger when 10% of the element is visible
+            rootMargin: '0px 0px -50px 0px' // trigger a bit before the element is in view
+        });
+        
+        // Observe elements that should animate on scroll
+        var elementsToAnimate = document.querySelectorAll('.program-item, .eligibility-score, .expiry-notice');
+        elementsToAnimate.forEach(function(el) {
+            observer.observe(el);
+        });
+    }
+    
+    // Animate countdown timer digits
+    function animateTimer() {
+        // Add CSS class for digit flipping animation
+        var style = document.createElement('style');
+        style.textContent = `
+            @keyframes flipTop {
+                0% { transform: rotateX(0deg); }
+                50%, 100% { transform: rotateX(-90deg); }
+            }
+            
+            @keyframes flipBottom {
+                0%, 50% { transform: rotateX(90deg); }
+                100% { transform: rotateX(0deg); }
+            }
+            
+            .timer-digit {
+                position: relative;
+                display: inline-block;
+                padding: 0 3px;
+            }
+            
+            .flip-animation {
+                animation: flash 0.3s;
+            }
+            
+            @keyframes flash {
+                0% { opacity: 1; }
+                50% { opacity: 0.5; }
+                100% { opacity: 1; }
+            }
+            
+            .shake {
+                animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            }
+            
+            @keyframes shake {
+                10%, 90% { transform: translate3d(-1px, 0, 0); }
+                20%, 80% { transform: translate3d(2px, 0, 0); }
+                30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+                40%, 60% { transform: translate3d(4px, 0, 0); }
+            }
+            
+            .clicked {
+                animation: click 0.3s;
+            }
+            
+            @keyframes click {
+                0% { transform: scale(1); }
+                50% { transform: scale(0.97); }
+                100% { transform: scale(1); }
+            }
+            
+            .pulse {
+                animation: pulse-animation 1s;
+            }
+            
+            @keyframes pulse-animation {
+                0% { opacity: 1; }
+                50% { opacity: 0.6; }
+                100% { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize animations
+        animateTimer();
+        initializeTimer();
+        
+        // Setup countdown timer
+        timerInterval = setInterval(updateTimer, 1000);
+        
+        // Start Quiz Button
+        document.getElementById('start-quiz').addEventListener('click', initQuiz);
+        
+        // Next Question Button with enhanced transition
+        document.getElementById('next-question').addEventListener('click', function() {
+            if (validateCurrentQuestion()) {
+                // Add click animation
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 300);
+                
+                currentQuestion++;
+                
+                if (currentQuestion < totalQuestions) {
+                    // Fade out current slide
+                    var currentSlide = document.querySelector('.question-container');
+                    currentSlide.style.opacity = '0';
+                    currentSlide.style.transform = 'translateY(-20px)';
+                    currentSlide.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    
+                    // Update progress before fade-in for smoother transition
+                    updateProgress(currentQuestion);
+                    
+                    // Wait for fade-out, then update content
+                    setTimeout(function() {
+                        document.getElementById('quiz-slides').innerHTML = buildQuizSlide(currentQuestion);
+                        
+                        // Refresh AOS animations
+                        AOS.refreshHard();
+                        
+                        // Setup listeners for new options
+                        setupOptionListeners();
+                        
+                        // Pre-select answers if available
+                        if (quizData[questions[currentQuestion].id]) {
+                            preSelectAnswers(currentQuestion);
+                        }
+                        
+                        // Show notification for certain questions
+                        showNotification(currentQuestion);
+                        
+                        // Change Continue button text for last question
+                        if (currentQuestion === totalQuestions - 1) {
+                            document.getElementById('next-question').textContent = 'Get My Free Benefits Guide';
+                        }
+                    }, 300);
+                } else {
+                    // Quiz completed, show analysis
+                    showAnalysisSection();
+                }
             }
         });
         
-        // Function to animate text change
-        function animateTextChange(element, newText) {
-            // Clear current text
-            element.style.opacity = '0';
-            
-            setTimeout(function() {
-                element.textContent = newText;
-                element.style.opacity = '1';
+        // Get Guide Button
+        document.getElementById('get-guide').addEventListener('click', function() {
+            // Add click animation
+            this.classList.add('clicked');
+            setTimeout(() => {
+                this.classList.remove('clicked');
             }, 300);
-        }
+            
+            showSurvey();
+        });
         
-        // Add confetti effect for success
-        function addConfettiEffect() {
-            var style = document.createElement('style');
-            style.textContent = `
-                .success-message {
-                    text-align: center;
-                    padding: 30px 20px;
-                }
-                
-                .success-icon {
-                    background-color: var(--color-success);
-                    color: white;
-                    width: 60px;
-                    height: 60px;
-                    line-height: 60px;
-                    font-size: 30px;
-                    border-radius: 50%;
-                    margin: 0 auto 20px;
-                }
-                
-                .confetti {
-                    position: absolute;
-                    width: 10px;
-                    height: 10px;
-                    background-color: #f39c12;
-                    opacity: 0.8;
-                    animation: confetti-fall 3s linear forwards;
-                }
-                
-                @keyframes confetti-fall {
-                    0% {
-                        transform: translateY(-100px) rotate(0deg);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translateY(500px) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
+        // Submit Survey Button
+        document.getElementById('submit-survey').addEventListener('click', function() {
+            // Add click animation
+            this.classList.add('clicked');
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 300);
+            
+            // Show success message with animation
+            var successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.innerHTML = `
+                <div class="success-icon">✓</div>
+                <h3>Thank You!</h3>
+                <p>Your free benefits guide has been generated and will be delivered shortly.</p>
             `;
-            document.head.appendChild(style);
             
-            // Create confetti
-            var colors = ['#1abc9c', '#3498db', '#9b59b6', '#f1c40f', '#e74c3c', '#2ecc71'];
-            var confettiCount = 50;
+            successMessage.style.opacity = '0';
+            successMessage.style.transform = 'translateY(20px)';
+            successMessage.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             
-            for (var i = 0; i < confettiCount; i++) {
-                var confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                confetti.style.width = Math.random() * 10 + 5 + 'px';
-                confetti.style.height = Math.random() * 10 + 5 + 'px';
-                confetti.style.opacity = Math.random() * 0.5 + 0.5;
-                
-                document.body.appendChild(confetti);
-                
-                // Remove confetti after animation
-                setTimeout(function(el) {
-                    return function() {
-                        if (el && el.parentNode) {
-                            el.parentNode.removeChild(el);
-                        }
-                    };
-                }(confetti), 5000);
+            // Replace survey with success message
+            var surveyContainer = document.getElementById('survey-container');
+            surveyContainer.innerHTML = '';
+            surveyContainer.appendChild(successMessage);
+            
+            // Animate success message
+            setTimeout(function() {
+                successMessage.style.opacity = '1';
+                successMessage.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Add confetti effect
+            addConfettiEffect();
+        });
+        
+        // Enhance radio and checkbox options with micro-interactions
+        document.addEventListener('mousedown', function(e) {
+            if (e.target.classList.contains('radio-option') || e.target.classList.contains('checkbox-option')) {
+                e.target.style.transform = 'scale(0.98)';
             }
+        });
+        
+        document.addEventListener('mouseup', function(e) {
+            if (e.target.classList.contains('radio-option') || e.target.classList.contains('checkbox-option')) {
+                e.target.style.transform = '';
+            }
+        });
+        
+        // A/B Test: Randomize headline variants with animation
+        var headlineVariants = [
+            "See Which 2025 Government Benefits You're Missing Out On",
+            "Check Your Eligibility for Up to $4,700 in Government Benefits",
+            "Government Benefits Check: What You May Qualify For in 2025"
+        ];
+        
+        var subheadlineVariants = [
+            "Americans are receiving up to $4,700 in benefits they didn't know about",
+            "Most people miss out on at least 3 benefits they qualify for",
+            "Claim your share of available government assistance programs"
+        ];
+        
+        // Randomly select variants (simulating A/B test)
+        var headlineIndex = getRandomNumber(0, headlineVariants.length - 1);
+        var subheadlineIndex = getRandomNumber(0, subheadlineVariants.length - 1);
+        
+        // Apply variants with typewriter effect
+        var headlineElement = document.querySelector('.hero h1');
+        var subheadlineElement = document.querySelector('.hero h2');
+        
+        if (headlineElement && subheadlineElement) {
+            // Store original text
+            var originalHeadline = headlineElement.textContent;
+            var originalSubheadline = subheadlineElement.textContent;
+            
+            // Apply new text with animation
+            setTimeout(function() {
+                animateTextChange(headlineElement, headlineVariants[headlineIndex]);
+                
+                setTimeout(function() {
+                    animateTextChange(subheadlineElement, subheadlineVariants[subheadlineIndex]);
+                }, 800);
+            }, 500);
         }
-    </script>
+    });
+    
+    // Function to animate text change
+    function animateTextChange(element, newText) {
+        // Clear current text
+        element.style.opacity = '0';
+        
+        setTimeout(function() {
+            element.textContent = newText;
+            element.style.opacity = '1';
+        }, 300);
+    }
+    
+    // Add confetti effect for success
+    function addConfettiEffect() {
+        var style = document.createElement('style');
+        style.textContent = `
+            .success-message {
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .success-icon {
+                background-color: var(--color-success);
+                color: white;
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                font-size: 30px;
+                border-radius: 50%;
+                margin: 0 auto 20px;
+            }
+            
+            .confetti {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: #f39c12;
+                opacity: 0.8;
+                animation: confetti-fall 3s linear forwards;
+            }
+            
+            @keyframes confetti-fall {
+                0% {
+                    transform: translateY(-100px) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(500px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Create confetti
+        var colors = ['#1abc9c', '#3498db', '#9b59b6', '#f1c40f', '#e74c3c', '#2ecc71'];
+        var confettiCount = 50;
+        
+        for (var i = 0; i < confettiCount; i++) {
+            var confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = Math.random() * 10 + 5 + 'px';
+            confetti.style.opacity = Math.random() * 0.5 + 0.5;
+            
+            document.body.appendChild(confetti);
+            
+            // Remove confetti after animation
+            setTimeout(function(el) {
+                return function() {
+                    if (el && el.parentNode) {
+                        el.parentNode.removeChild(el);
+                    }
+                };
+            }(confetti), 5000);
+        }
+    }
+</script>
+
+
 </body>
 </html>
