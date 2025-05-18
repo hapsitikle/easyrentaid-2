@@ -969,8 +969,11 @@ margin-right: auto;
             once: true,
             offset: 50,
             // Disable animations for users who prefer reduced motion
-          
+            startEvent: 'DOMContentLoaded'
         });
+            // Force animations to show when elements are in viewport
+            document.querySelectorAll('[data-aos]').forEach(el => {
+            el.classList.add('aos-init', 'aos-animate');
     });
     
     // Global variables
