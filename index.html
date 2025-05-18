@@ -1127,7 +1127,7 @@ function updateTimer() {
         var question = questions[questionIndex];
         var slideContent = '';
         
-        slideContent += '<div class="question-container" data-aos="fade-up">';
+        slideContent += '<div class="question-container">';
         slideContent += '<h3 class="question">' + question.question + '</h3>';
         slideContent += '<p class="help-text">' + question.helpText + '</p>';
         
@@ -1204,8 +1204,9 @@ function updateTimer() {
         }, 300);
         
         // Set up first quiz slide
-        document.getElementById('quiz-slides').innerHTML = buildQuizSlide(0);
-        updateProgress(0);
+        document.getElementById('quiz-slides').innerHTML = buildQuizSlide(currentQuestion);
+        AOS.refresh();
+        updateProgress(currentQuestion);
         
         // Add event listeners for radio and checkbox options
         setupOptionListeners();
