@@ -1508,27 +1508,31 @@ function updateTimer() {
     
     // Generate matched programs based on quiz answers
     function generatePrograms() {
-        // Create fixed set of 4 programs with specific descriptions
+        // Create fixed set of 4 programs with specific descriptions and hoplinks
         var programs = [
             {
                 name: "Food Stamp Assistance",
                 amount: "Free Service",
-                description: "Free SNAP sign-up—get a personal callback and 100% no-cost service."
+                description: "Free SNAP sign-up—get a personal callback and 100% no-cost service.",
+                hoplink: "https://getrewarrds.com/aff_c?offer_id=2302&aff_id=134431"
             },
             {
                 name: "Credit Card Assistance",
                 amount: "Zero-Fee Help",
-                description: "Zero-fee credit help—expert advisors reach out to you for fast relief."
+                description: "Zero-fee credit help—expert advisors reach out to you for fast relief.",
+                hoplink: "https://getrewarrds.com/aff_c?offer_id=2301&aff_id=134431"
             },
             {
                 name: "Section 8 Assistance",
                 amount: "No-Cost Support",
-                description: "No-cost housing voucher support—our team calls you to finish your application."
+                description: "No-cost housing voucher support—our team calls you to finish your application.",
+                hoplink: "https://getrewarrds.com/aff_c?offer_id=2300&aff_id=134431"
             },
             {
                 name: "Stimulus Assistance",
                 amount: "Free Enrollment",
-                description: "Free federal stimulus enrollment—personalized outreach and guaranteed satisfaction."
+                description: "Free federal stimulus enrollment—personalized outreach and guaranteed satisfaction.",
+                hoplink: "https://getrewarrds.com/aff_c?offer_id=1421&aff_id=134431"
             }
         ];
         
@@ -1589,9 +1593,8 @@ function updateTimer() {
                 var programsHtml = '';
                 
                 programs.forEach(function(program, index) {
-                    // Add data-url attribute to each program for the popup functionality
-                    var randomUrl = "https://benefits-example.com/" + program.name.toLowerCase().replace(/\s+/g, '-');
-                    programsHtml += '<div class="program-item" id="program-' + index + '" data-url="' + randomUrl + '">';
+                    // Add data-hoplink attribute to each program for the popup functionality
+                    programsHtml += '<div class="program-item" id="program-' + index + '" data-hoplink="' + program.hoplink + '">';
                     programsHtml += '<div class="program-name">' + program.name + '</div>';
                     programsHtml += '<div class="program-amount">' + program.amount + '</div>';
                     programsHtml += '<div class="program-desc">' + program.description + '</div>';
@@ -1652,8 +1655,8 @@ function updateTimer() {
         
         // Open popup function
         function openPopup(programItem) {
-            // Store the URL from the clicked program item
-            const targetUrl = programItem.getAttribute('data-url');
+            // Store the hoplink from the clicked program item
+            const targetUrl = programItem.getAttribute('data-hoplink');
             ctaBtn.setAttribute('href', targetUrl);
             
             // Store last focused element
@@ -1846,7 +1849,7 @@ function updateTimer() {
                         
                         // Change Continue button text for last question
                         if (currentQuestion === totalQuestions - 1) {
-                            document.getElementById('next-question').textContent = 'Get My Free Benefits Guide';
+                            document.getElementById('next-question').textContent = 'Yes, I want the benefits';
                         }
                     }, 300);
                 } else {
